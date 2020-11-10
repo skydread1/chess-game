@@ -1,18 +1,18 @@
 package model;
 /**
  * @author lucas/loïc
- * pièce Roi
+ * pièce King
  *
  */
-public class Roi extends AbstractPiece {
+public class King extends AbstractPiece {
 	/**
 	 * @param couleur_de_piece
 	 * @param coord
 	 * 
 	 */
-	public Roi(Couleur couleur_de_piece,Coord coord){
+	public King(Color couleur_de_piece,Coord coord){
 		super(couleur_de_piece,coord);
-		this.name="Roi";
+		this.name="King";
 
 	}
 

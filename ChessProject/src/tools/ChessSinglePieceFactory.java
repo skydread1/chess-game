@@ -3,7 +3,7 @@ package tools;
 
 
 import model.Coord;
-import model.Couleur;
+import model.Color;
 import model.Pieces;
 
 /**
@@ -31,7 +31,7 @@ public class ChessSinglePieceFactory {
 	 * @param y 
 	 * @return pieces of a chest game list
 	 */
-	public static Pieces newPiece(Couleur pieceCouleur, String type, int x, int y){
+	public static Pieces newPiece(Color pieceCouleur, String type, int x, int y){
 
 		Pieces piece = null;
 
@@ -48,6 +48,6 @@ public class ChessSinglePieceFactory {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(ChessSinglePieceFactory.newPiece(Couleur.BLANC, "Tour", 0, 6));
+		System.out.println(ChessSinglePieceFactory.newPiece(Color.WHITE, "Rock", 0, 6));
 	}
 }

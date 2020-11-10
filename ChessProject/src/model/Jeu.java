@@ -11,11 +11,11 @@ import tools.ChessPiecesFactory;
  */
 public class Jeu extends java.lang.Object{
 	private List<Pieces> pieces=null;
-	private Couleur couleur;
+	private Color couleur;
 	/**
 	 * @param couleur
 	 */
-	public Jeu(Couleur couleur){
+	public Jeu(Color couleur){
 		pieces=ChessPiecesFactory.newPieces(couleur);
 		this.couleur=couleur;
 	}
@@ -119,8 +119,8 @@ public class Jeu extends java.lang.Object{
 	 * <p>
 	 * @return the piece color 
 	 */
-	public Couleur getPieceColor(int x,int y){
-		Couleur ret=Couleur.NOIRBLANC;
+	public Color getPieceColor(int x,int y){
+		Color ret=Color.BLACKWHITE;
 		if(isPieceHere(x,y)){
 			Pieces pieces=findPiece(x,y);
 			ret= pieces.getCouleur();		
@@ -145,7 +145,7 @@ public class Jeu extends java.lang.Object{
 	/**
 	 * @return the color of the game
 	 */
-	public Couleur getCouleur(){
+	public Color getCouleur(){
 		return this.couleur;	
 	}
 
@@ -213,13 +213,13 @@ public class Jeu extends java.lang.Object{
 	 */
 	public boolean isPawnPromotion(int xFinal,int yFinal){
 		boolean ret=false;
-		if(getCouleur()==Couleur.BLANC){
+		if(getCouleur()==Color.WHITE){
 			if(yFinal==7){
 				ret= true;
 			}	
 		}
 
-		if(getCouleur()==Couleur.NOIR){
+		if(getCouleur()==Color.BLACK){
 			if(yFinal==0){
 				ret= true;
 			}
@@ -236,24 +236,24 @@ public class Jeu extends java.lang.Object{
 	public boolean pawnPromotion(int xFinal,int yFinal,java.lang.String type){
 		boolean ret=false;
 		//Pieces piece=findPiece(xFinal,yFinal);
-		if (this.getPieceType(xFinal,yFinal)=="Pion" && type!="Pion" && type!="Roi"){
+		if (this.getPieceType(xFinal,yFinal)=="Pawn" && type!="Pawn" && type!="King"){
 			Pieces piece=findPiece(xFinal,yFinal);
 			piece.move(-1, -1);
 			switch(type){
-			case "Reine":
-				pieces.add(new Reine(piece.getCouleur(),new Coord(xFinal,yFinal)));
+			case "Queen":
+				pieces.add(new Queen(piece.getCouleur(),new Coord(xFinal,yFinal)));
 				ret=true;
 				break;
-			case "Tour":
-				pieces.add(new Tour(piece.getCouleur(),new Coord(xFinal,yFinal)));
+			case "Rock":
+				pieces.add(new Rock(piece.getCouleur(),new Coord(xFinal,yFinal)));
 				ret=true;
 				break;
-			case "Fou":
-				pieces.add(new Fou(piece.getCouleur(),new Coord(xFinal,yFinal)));
+			case "Bishop":
+				pieces.add(new Bishop(piece.getCouleur(),new Coord(xFinal,yFinal)));
 				ret=true;
 				break;
-			case "Cavalier":
-				pieces.add(new Cavalier(piece.getCouleur(),new Coord(xFinal,yFinal)));
+			case "Knight":
+				pieces.add(new Knight(piece.getCouleur(),new Coord(xFinal,yFinal)));
 				ret=true;
 				break;	
 			default:
@@ -265,7 +265,7 @@ public class Jeu extends java.lang.Object{
 
 
 	/**
-	 * @return les coordonnées du roi
+	 * @return les coordonnées du king
 	 */
 	public Coord getKingCoord(){
 		Coord ret=null;	
@@ -274,7 +274,7 @@ public class Jeu extends java.lang.Object{
 
 		while(li.hasNext()){
 			Pieces p_tampon = li.next();
-			if (p_tampon.getClass().getSimpleName().contains("Roi")){
+			if (p_tampon.getClass().getSimpleName().contains("King")){
 				coord.x=p_tampon.getX();
 				coord.y=p_tampon.getY();
 				ret= coord;

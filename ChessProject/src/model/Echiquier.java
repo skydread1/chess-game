@@ -9,8 +9,8 @@ import java.util.List;
 public class Echiquier extends java.lang.Object
 implements BoardGames{
 
-	private Jeu jeu_blanc;
-	private Jeu  jeu_noir;
+	private Jeu jeu_WHITE;
+	private Jeu  jeu_BLACK;
 	private Jeu  jeu_courant;
 	private Jeu jeu_non_courant;
 	private String message="erreur";
@@ -19,10 +19,10 @@ implements BoardGames{
 	 * 
 	 */
 	public Echiquier(){
-		this.jeu_blanc=new Jeu(Couleur.BLANC);
-		this.jeu_noir=new Jeu(Couleur.NOIR);
-		this.jeu_courant=this.jeu_blanc;
-		this.jeu_non_courant=this.jeu_noir;
+		this.jeu_WHITE=new Jeu(Color.WHITE);
+		this.jeu_BLACK=new Jeu(Color.BLACK);
+		this.jeu_courant=this.jeu_WHITE;
+		this.jeu_non_courant=this.jeu_BLACK;
 	}
 
 	/**
@@ -41,7 +41,7 @@ implements BoardGames{
 	}
 
 	/**
-	 * Change le joueur courant lorsqu'un joueur termine son tour
+	 * Change le joueur courant lorsqu'un joueur termine son rock
 	 */
 	public void switchJoueur(){
 		Jeu temp;
@@ -61,20 +61,20 @@ implements BoardGames{
 	public boolean isPieceInBetween(int xInit,int yInit,int xFinal,int yFinal){
 		boolean ret=false;
 		boolean reste=true;
-		//si la pièce qui va se dépacer est un fou ou une reine(déplacement diagonal), on regarde si elle va croiser une autre pièce lors de son déplacement
-		if(this.jeu_courant.getPieceType(xInit, yInit).equals("Fou") || this.jeu_courant.getPieceType(xInit, yInit).equals("Reine")){
-			if(xInit!=xFinal && yInit!=yFinal){//on verifie que le déplacement est bien celui d'un fou (pour la reine)
+		//si la pièce qui va se dépacer est un bishop ou une queen(déplacement diagonal), on regarde si elle va ckingser une autre pièce lors de son déplacement
+		if(this.jeu_courant.getPieceType(xInit, yInit).equals("Bishop") || this.jeu_courant.getPieceType(xInit, yInit).equals("Queen")){
+			if(xInit!=xFinal && yInit!=yFinal){//on verifie que le déplacement est bien celui d'un bishop (pour la queen)
 				//on va regarder s'il y a une pièce sur chaque case qui sépare le point de départ et le point d'arrivée
-				for(int i=1; i<(Math.abs(xFinal-xInit)) && reste ;i++){ //si le fou va de 1,3 a 3,5 on aura i<2+1 avec i=1 au début: le fou se déplacant bien de 2 cases on entre 2 fois dans la boucle
+				for(int i=1; i<(Math.abs(xFinal-xInit)) && reste ;i++){ //si le bishop va de 1,3 a 3,5 on aura i<2+1 avec i=1 au début: le bishop se déplacant bien de 2 cases on entre 2 fois dans la boucle
 					if(xFinal-xInit>0){//si le déplacement est positif selon les x
 						if(yFinal-yInit>0){//si le déplacement est positif selon les y
-							if(this.jeu_blanc.isPieceHere(xInit+i, yInit+i) || this.jeu_noir.isPieceHere(xInit+i, yInit+i)){
+							if(this.jeu_WHITE.isPieceHere(xInit+i, yInit+i) || this.jeu_BLACK.isPieceHere(xInit+i, yInit+i)){
 								ret=true;
 								reste=false;
 							}
 						}
 						else{//si le déplacement est negatif selon les y
-							if(this.jeu_blanc.isPieceHere(xInit+i, yInit-i) || this.jeu_noir.isPieceHere(xInit+i, yInit-i)){
+							if(this.jeu_WHITE.isPieceHere(xInit+i, yInit-i) || this.jeu_BLACK.isPieceHere(xInit+i, yInit-i)){
 								ret=true;
 								reste=false;
 							}
@@ -83,13 +83,13 @@ implements BoardGames{
 
 					else{ //si le déplacement est negatif selon les x
 						if(yFinal-yInit>0){//si le déplacement est positif selon les y
-							if(this.jeu_blanc.isPieceHere(xInit-i, yInit+i) || this.jeu_noir.isPieceHere(xInit-i, yInit+i)){
+							if(this.jeu_WHITE.isPieceHere(xInit-i, yInit+i) || this.jeu_BLACK.isPieceHere(xInit-i, yInit+i)){
 								ret=true;
 								reste=false;
 							}
 						}
 						else{//si le déplacement est negatif selon les y
-							if(this.jeu_blanc.isPieceHere(xInit-i, yInit-i) || this.jeu_noir.isPieceHere(xInit-i, yInit-i)){
+							if(this.jeu_WHITE.isPieceHere(xInit-i, yInit-i) || this.jeu_BLACK.isPieceHere(xInit-i, yInit-i)){
 								ret=true;
 								reste=false;
 							}
@@ -99,20 +99,20 @@ implements BoardGames{
 				}
 			}
 		}
-		//si la pièce qui va se dépacer est une tour ou une reine(déplacement en ligne droite), on regarde si elle va croiser une autre pièce lors de son déplacement
-		if(this.jeu_courant.getPieceType(xInit, yInit).equals("Tour") || this.jeu_courant.getPieceType(xInit, yInit).equals("Reine")){
-			if((xFinal==xInit || yFinal==yInit)){//on verifie que le déplacement est bien celui d'une tour (pour la reine)
+		//si la pièce qui va se dépacer est une rock ou une queen(déplacement en ligne dkingte), on regarde si elle va ckingser une autre pièce lors de son déplacement
+		if(this.jeu_courant.getPieceType(xInit, yInit).equals("Rock") || this.jeu_courant.getPieceType(xInit, yInit).equals("Queen")){
+			if((xFinal==xInit || yFinal==yInit)){//on verifie que le déplacement est bien celui d'une rock (pour la queen)
 				if(yFinal==yInit){  //si le déplacement est horizontal
 					//on va regarder s'il y a une pièce sur chaque case qui sépare le point de départ et le point d'arrivée
-					for(int i=1; i<(Math.abs((xFinal-xInit))) && reste ;i++ ){ //si la tour va de 1,3 a 3,3 on aura i<2+1 avec i=1 au début: la tour se déplacant bien de 2 cases on entre 2 fois dans la boucle
+					for(int i=1; i<(Math.abs((xFinal-xInit))) && reste ;i++ ){ //si la rock va de 1,3 a 3,3 on aura i<2+1 avec i=1 au début: la rock se déplacant bien de 2 cases on entre 2 fois dans la boucle
 						if((xFinal-xInit)>0){//si le déplacement est positif
-							if(this.jeu_blanc.isPieceHere(xInit+i, yInit) || this.jeu_noir.isPieceHere(xInit+i, yInit)){
+							if(this.jeu_WHITE.isPieceHere(xInit+i, yInit) || this.jeu_BLACK.isPieceHere(xInit+i, yInit)){
 								ret=true;
 								reste=false;
 							}
 						}
 						else{//si le déplacement est négatif
-							if(this.jeu_blanc.isPieceHere(xInit-i, yInit) || this.jeu_noir.isPieceHere(xInit-i, yInit)){
+							if(this.jeu_WHITE.isPieceHere(xInit-i, yInit) || this.jeu_BLACK.isPieceHere(xInit-i, yInit)){
 								ret=true;
 								reste=false;
 							}
@@ -122,15 +122,15 @@ implements BoardGames{
 
 				else{//si le déplacement est vertical
 					//on va regarder s'il y a une pièce sur chaque case qui sépare le point de départ et le point d'arrivée
-					for(int i=1; i<(Math.abs((yFinal-yInit))) && reste ;i++){ //si la tour va de 1,3 a 1,5 on aura i<2+1 avec i=1 au début: la tour se déplacant bien de 2 cases on entre 2 fois dans la boucle
+					for(int i=1; i<(Math.abs((yFinal-yInit))) && reste ;i++){ //si la rock va de 1,3 a 1,5 on aura i<2+1 avec i=1 au début: la rock se déplacant bien de 2 cases on entre 2 fois dans la boucle
 						if((yFinal-yInit)>0){//si le déplacement est positif
-							if(this.jeu_blanc.isPieceHere(xInit, yInit+i) || this.jeu_noir.isPieceHere(xInit, yInit+i)){
+							if(this.jeu_WHITE.isPieceHere(xInit, yInit+i) || this.jeu_BLACK.isPieceHere(xInit, yInit+i)){
 								ret=true;
 								reste=false;
 							}
 						}
 						else{//si le déplacement est négatif
-							if(this.jeu_blanc.isPieceHere(xInit, yInit-i) || this.jeu_noir.isPieceHere(xInit, yInit-i)){
+							if(this.jeu_WHITE.isPieceHere(xInit, yInit-i) || this.jeu_BLACK.isPieceHere(xInit, yInit-i)){
 								ret=true;
 								reste=false;
 							}
@@ -164,11 +164,11 @@ implements BoardGames{
 				//cas de la capture
 				if(this.jeu_non_courant.isPieceHere(xFinal,yFinal)){
 					ret= jeu_non_courant.isCapturePossible(xFinal, yFinal) && jeu_courant.isMoveOk(xInit, yInit, xFinal, yFinal) ;
-					//si la pièce est un pion on vérifie la prise en diagonale
-					if(this.jeu_courant.getPieceType(xInit, yInit).equals("Pion")) 
+					//si la pièce est un pawn on vérifie la prise en diagonale
+					if(this.jeu_courant.getPieceType(xInit, yInit).equals("Pawn")) 
 					{
 						if(this.jeu_non_courant.isCapturePossible(xFinal, yFinal)){
-							ret=((Pion) this.jeu_courant.findPiece(xInit,yInit)).isMoveDiagOk(xFinal,yFinal);
+							ret=((Pawn) this.jeu_courant.findPiece(xInit,yInit)).isMoveDiagOk(xFinal,yFinal);
 						}
 					}
 				}
@@ -181,7 +181,7 @@ implements BoardGames{
 						ret= jeu_courant.isMoveOk(xInit, yInit, xFinal, yFinal);	
 					}
 				}
-				//la fonction retourne true si il y a une piece qui gene le déplacement 
+				//la fonction rerockne true si il y a une piece qui gene le déplacement 
 				if(isPieceInBetween(xInit,yInit,xFinal,yFinal)){
 					ret=false;
 					setMessage("KO: il y a une pièce qui gène le déplacement");
@@ -215,14 +215,14 @@ implements BoardGames{
 	}
 
 	public  String toString(){
-		return "Jeu Blanc: \r" + this.jeu_blanc.toString() + " \r Jeu Noir: \r" + this.jeu_noir.toString()+ "\r";
+		return "Jeu White: \r" + this.jeu_WHITE.toString() + " \r Jeu Black: \r" + this.jeu_BLACK.toString()+ "\r";
 	}
 
-	public Couleur getColorCurrentPlayer(){
+	public Color getColorCurrentPlayer(){
 		return this.jeu_courant.getCouleur();
 	}
 
-	public Couleur getPieceColor(int x,int y){
+	public Color getPieceColor(int x,int y){
 		return this.jeu_courant.getPieceColor(x,y);
 	}
 

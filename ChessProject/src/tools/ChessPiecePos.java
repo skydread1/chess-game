@@ -1,7 +1,7 @@
 package tools;
 
 import model.Coord;
-import model.Couleur;
+import model.Color;
 
 /**
  * @author francoise.perrin
@@ -10,31 +10,31 @@ import model.Couleur;
 public enum ChessPiecePos {
 
 	@SuppressWarnings("javadoc")
-	TOURBLANC("Tour", Couleur.BLANC, new Coord[] {new Coord(0,7), new Coord(7,7)}),
+	TOURWHITE("Rock", Color.WHITE, new Coord[] {new Coord(0,7), new Coord(7,7)}),
 	@SuppressWarnings("javadoc")
-	CAVALIERBLANC("Cavalier", Couleur.BLANC, new Coord[] {new Coord(1,7), new Coord(6,7)}), 
+	CAVALIERWHITE("Knight", Color.WHITE, new Coord[] {new Coord(1,7), new Coord(6,7)}), 
 	@SuppressWarnings("javadoc")
-	FOUBLANC("Fou", Couleur.BLANC, new Coord[] {new Coord(2,7), new Coord(5,7)}), 
+	FOUWHITE("Bishop", Color.WHITE, new Coord[] {new Coord(2,7), new Coord(5,7)}), 
 	@SuppressWarnings("javadoc")
-	REINEBLANC("Reine", Couleur.BLANC, new Coord[] {new Coord(3,7)}), 
+	REINEWHITE("Queen", Color.WHITE, new Coord[] {new Coord(3,7)}), 
 	@SuppressWarnings("javadoc")
-	ROIBLANC("Roi", Couleur.BLANC, new Coord[] {new Coord(4,7)}),
+	ROIWHITE("King", Color.WHITE, new Coord[] {new Coord(4,7)}),
 	@SuppressWarnings("javadoc")
-	PIONBLANC("Pion", Couleur.BLANC, new Coord[] {new Coord(0,6), new Coord(1,6), new Coord(2,6), new Coord(3,6),
+	PIONWHITE("Pawn", Color.WHITE, new Coord[] {new Coord(0,6), new Coord(1,6), new Coord(2,6), new Coord(3,6),
 			new Coord(4,6), new Coord(5,6), new Coord(6,6), new Coord(7,6)}),
 
 	@SuppressWarnings("javadoc")
-	TOURNOIR("Tour", Couleur.NOIR, new Coord[] {new Coord(0,0), new Coord(7,0)}),
+	TOURBLACK("Rock", Color.BLACK, new Coord[] {new Coord(0,0), new Coord(7,0)}),
 	@SuppressWarnings("javadoc")
-	CAVALIERNOIR("Cavalier", Couleur.NOIR, new Coord[] {new Coord(1,0), new Coord(6,0)}), 
+	CAVALIERBLACK("Knight", Color.BLACK, new Coord[] {new Coord(1,0), new Coord(6,0)}), 
 	@SuppressWarnings("javadoc")
-	FOUNOIR("Fou", Couleur.NOIR, new Coord[] {new Coord(2,0), new Coord(5,0)}), 
+	FOUBLACK("Bishop", Color.BLACK, new Coord[] {new Coord(2,0), new Coord(5,0)}), 
 	@SuppressWarnings("javadoc")
-	REINENOIR("Reine", Couleur.NOIR, new Coord[] {new Coord(3,0)}), 
+	REINEBLACK("Queen", Color.BLACK, new Coord[] {new Coord(3,0)}), 
 	@SuppressWarnings("javadoc")
-	ROINOIR("Roi", Couleur.NOIR, new Coord[] {new Coord(4,0)}),
+	ROIBLACK("King", Color.BLACK, new Coord[] {new Coord(4,0)}),
 	@SuppressWarnings("javadoc")
-	PIONNOIR("Pion", Couleur.NOIR, new Coord[] {new Coord(0,1), new Coord(1,1), new Coord(2,1), new Coord(3,1),
+	PIONBLACK("Pawn", Color.BLACK, new Coord[] {new Coord(0,1), new Coord(1,1), new Coord(2,1), new Coord(3,1),
 			new Coord(4,1), new Coord(5,1), new Coord(6,1), new Coord(7,1)})   
 	; 
 	/**
@@ -44,13 +44,13 @@ public enum ChessPiecePos {
 	/**
 	 * color
 	 */
-	public Couleur couleur;
+	public Color couleur;
 	/**
 	 * coordinates
 	 */
 	public  Coord[] coords = new Coord[8] ;   
 
-	ChessPiecePos( String nom, Couleur couleur, Coord[] coords) { 
+	ChessPiecePos( String nom, Color couleur, Coord[] coords) { 
 		this.nom = nom;this.couleur = couleur;
 		this.coords = coords;
 	} 

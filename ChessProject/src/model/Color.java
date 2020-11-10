@@ -7,10 +7,10 @@ package model;
  */
 
 
-public enum Couleur {
+public enum Color {
 	
 	@SuppressWarnings("javadoc")
-	BLANC, @SuppressWarnings("javadoc")
-	NOIR, @SuppressWarnings("javadoc")
-	NOIRBLANC
+	WHITE, @SuppressWarnings("javadoc")
+	BLACK, @SuppressWarnings("javadoc")
+	BLACKWHITE
 }

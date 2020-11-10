@@ -3,9 +3,9 @@ package model;
  * @author lucas.loic
  *
  */
-public class Pion
+public class Pawn
 extends AbstractPiece
-implements Pions {
+implements Pawns {
 
 	/**
 	 * constructor
@@ -13,15 +13,15 @@ implements Pions {
 	 * @param couleur_de_piece
 	 * @param coord
 	 */
-	public Pion(Couleur couleur_de_piece,Coord coord){
+	public Pawn(Color couleur_de_piece,Coord coord){
 		super(couleur_de_piece,coord);
-		this.name="Pion";	
+		this.name="Pawn";	
 	}
 
 	public boolean isMoveOk(int xFinal,int yFinal){
 		boolean ret=false;
 		if(isMoveOnChest(xFinal,yFinal)){
-			if(getCouleur()==Couleur.BLANC){
+			if(getCouleur()==Color.WHITE){
 				if(xFinal==getX() && yFinal==getY()-1){
 					ret= true;
 				}
@@ -30,7 +30,7 @@ implements Pions {
 				}
 			}
 
-			if(getCouleur()==Couleur.NOIR)
+			if(getCouleur()==Color.BLACK)
 			{
 				if(xFinal==getX() && yFinal==getY()+1){
 					ret= true;
@@ -46,14 +46,14 @@ implements Pions {
 
 	public boolean isMoveDiagOk(int xFinal,int yFinal){
 		boolean ret=false;
-		if(getCouleur()==Couleur.BLANC){
+		if(getCouleur()==Color.WHITE){
 			if(isMoveOnChest(xFinal,yFinal)){
 				if(Math.abs(xFinal-getX())==1 && yFinal==getY()-1){
 					ret= true;
 				}
 			}
 		}
-		if(getCouleur()==Couleur.NOIR){
+		if(getCouleur()==Color.BLACK){
 			if(isMoveOnChest(xFinal,yFinal)){
 				if(Math.abs(xFinal-getX())==1 && yFinal==getY()+1){
 					ret= true;

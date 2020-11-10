@@ -9,30 +9,30 @@ public enum ChessPieceImage {
 
 
 	@SuppressWarnings("javadoc")
-	TOURBLANC("TourBLANC", "tourBlancS.png"),
+	ROCKWHITE("RockWHITE", "rockWhiteS.png"),
 	@SuppressWarnings("javadoc")
-	CAVALIERBLANC("CavalierBLANC", "cavalierBlancS.png"), 
+	KNIGHTWHITE("KnightWHITE", "knightWhiteS.png"), 
 	@SuppressWarnings("javadoc")
-	FOUBLANC("FouBLANC",  "fouBlancS.png"), 
+	BISHOPWHITE("BishopWHITE",  "bishopWhiteS.png"), 
 	@SuppressWarnings("javadoc")
-	REINEBLANC("ReineBLANC", "reineBlancS.png"), 
+	QUEENWHITE("QueenWHITE", "queenWhiteS.png"), 
 	@SuppressWarnings("javadoc")
-	ROIBLANC("RoiBLANC", "roiBlancS.png"),
+	KINGWHITE("KingWHITE", "kingWhiteS.png"),
 	@SuppressWarnings("javadoc")
-	PIONBLANC("PionBLANC", "pionBlancS.png"),
+	PAWNWHITE("PawnWHITE", "pawnWhiteS.png"),
 
 	@SuppressWarnings("javadoc")
-	TOURNOIR("TourNOIR", "tourNoireS.png"),
+	ROCKBLACK("RockBLACK", "rockBlackS.png"),
 	@SuppressWarnings("javadoc")
-	CAVALIERNOIR("CavalierNOIR", "cavalierNoirS.png"), 
+	KNIGHTBLACK("KnightBLACK", "knightBlackS.png"), 
 	@SuppressWarnings("javadoc")
-	FOUNOIR( "FouNOIR", "fouNoirS.png"), 
+	BISHOPBLACK( "BishopBLACK", "bishopBlackS.png"), 
 	@SuppressWarnings("javadoc")
-	REINENOIR("ReineNOIR", "reineNoireS.png"), 
+	QUEENBLACK("QueenBLACK", "queenBlackS.png"), 
 	@SuppressWarnings("javadoc")
-	ROINOIR("RoiNOIR", "roiNoirS.png"),
+	KINGBLACK("KingBLACK", "kingBlackS.png"),
 	@SuppressWarnings("javadoc")
-	PIONNOIR("PionNOIR", "pionNoirS.png")   
+	PAWNBLACK("PawnBLACK", "pawnBlackS.png")   
 	; 
 
 

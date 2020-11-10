@@ -1,23 +1,22 @@
 package model;
 
 /**
- * @author lucas/loic
+ * @author Loic and Lucas
  * abstract class containing the common methods for all pieces in the chest game
- *
  */
 public abstract class AbstractPiece
 extends java.lang.Object
 implements Pieces{
 
 	protected  String name;
-	private Couleur couleur;
+	private Color couleur;
 	private Coord coord; 
 
 	/**
 	 * @param couleur
 	 * @param coord
 	 */
-	public AbstractPiece(Couleur couleur, Coord coord){
+	public AbstractPiece(Color couleur, Coord coord){
 		this.coord=coord;
 		this.couleur=couleur;
 	}
@@ -34,7 +33,7 @@ implements Pieces{
 		return this.coord.y;
 	}
 
-	public Couleur getCouleur(){
+	public Color getCouleur(){
 		return this.couleur;	
 	}
 

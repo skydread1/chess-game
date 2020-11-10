@@ -1,22 +1,22 @@
 package model;
 
 /**
- * @author lucas/loïc
+ * @author Loic and Lucas
  *
  */
-public class Cavalier
+public class Knight
 extends AbstractPiece {
 
 
 
 	/**
-	 * @param couleur_de_piece
+	 * @param color
 	 * @param coord
-	 * piece cavalier
+	 * piece knight
 	 */
-	public Cavalier(Couleur couleur_de_piece,Coord coord){
-		super(couleur_de_piece,coord);
-		this.name="Cavalier";
+	public Knight(Color color,Coord coord){
+		super(color,coord);
+		this.name="Knight";
 	}
 
 	public boolean isMoveOk(int xFinal,int yFinal){

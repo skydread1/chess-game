@@ -2,10 +2,10 @@ package model;
 
 /**
  * @author lucas/loïc
- * interface d'un pion
+ * interface d'un pawn
  *
  */
-public interface Pions {
+public interface Pawns {
 
 	/**
 	 * @param xFinal

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import model.Coord;
-import model.Couleur;
+import model.Color;
 import model.observable.ChessGame;
 
 
@@ -123,7 +123,7 @@ public abstract class AbstractChessGameControler implements ChessGameControlers 
 	 * <p>
 	 * @return the color of the current player
 	 */
-	protected Couleur getColorCurrentPlayer(){		
+	protected Color getColorCurrentPlayer(){		
 		return this.chessGame.getColorCurrentPlayer();		
 	}	
 
@@ -134,7 +134,7 @@ public abstract class AbstractChessGameControler implements ChessGameControlers 
 	 * <p>
 	 * @return a color of the piece from the chessGame
 	 */
-	protected Couleur getPieceColor(Coord initCoord){		
+	protected Color getPieceColor(Coord initCoord){		
 		return this.chessGame.getPieceColor(initCoord.x, initCoord.y);		
 	}	
 

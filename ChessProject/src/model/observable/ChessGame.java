@@ -5,7 +5,7 @@ import java.util.Observable;
 import java.util.Observer;
 
 import model.BoardGames;
-import model.Couleur;
+import model.Color;
 import model.Echiquier;
 
 
@@ -83,11 +83,11 @@ public class ChessGame extends Observable implements BoardGames{
 	}
 
 
-	public Couleur getColorCurrentPlayer(){		
+	public Color getColorCurrentPlayer(){		
 		return echiquier.getColorCurrentPlayer();		
 	}	
 
-	public Couleur getPieceColor(int x, int y){
+	public Color getPieceColor(int x, int y){
 		return echiquier.getPieceColor(x, y);
 	}
 

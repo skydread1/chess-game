@@ -1,26 +1,27 @@
 package model;
 /**
  * @author lucas/loïc
- * pièce Reine
+ * pièce Rock
  *
  */
-public class Reine extends AbstractPiece {
+public class Rock
+extends AbstractPiece {
 	/**
 	 * @param couleur_de_piece
 	 * @param coord
+	 * 
 	 */
-	public Reine(Couleur couleur_de_piece,Coord coord){
+	public Rock(Color couleur_de_piece,Coord coord){
 		super(couleur_de_piece,coord);
-		this.name="Reine";
+		this.name="Rock";
 
 	}
+
 
 	public boolean isMoveOk(int xFinal,int yFinal){
 		boolean ret=false;
 		if(isMoveOnChest(xFinal,yFinal)){
-			int x=xFinal-getX();
-			int y=yFinal-getY();
-			if( (xFinal==getX() || yFinal==getY()) || (Math.abs(y)==Math.abs(x))){
+			if((xFinal==getX() || yFinal==getY())){
 				ret= true;
 			}
 		}

@@ -19,7 +19,7 @@ public interface Pieces {
 	/**
 	 * @return color
 	 */
-	Couleur getCouleur();
+	Color getCouleur();
 	/**
 	 * @param xFinal
 	 * @param yFinal

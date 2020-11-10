@@ -4,7 +4,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.Coord;
-import model.Couleur;
+import model.Color;
 import model.Pieces;
 
 /**
@@ -28,11 +28,11 @@ public class ChessPiecesFactory {
 	 * @param pieceCouleur
 	 * @return liste de pi�ces de jeu d'�chec
 	 */
-	public static List<Pieces> newPieces(Couleur pieceCouleur){
+	public static List<Pieces> newPieces(Color pieceCouleur){
 
 		List<Pieces> pieces = null;
 		pieces = new LinkedList<Pieces>();
-		//String initCouleur = (Couleur.BLANC == pieceCouleur ? "B_" : "N_" );
+		//String initCouleur = (Couleur.WHITE == pieceCouleur ? "B_" : "N_" );
 
 		if (pieceCouleur != null){
 			for (int i = 0; i < ChessPiecePos.values().length; i++) {
@@ -55,6 +55,6 @@ public class ChessPiecesFactory {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(ChessPiecesFactory.newPieces(Couleur.BLANC));
+		System.out.println(ChessPiecesFactory.newPieces(Color.WHITE));
 	}
 }

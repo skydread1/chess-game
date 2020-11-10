@@ -3,14 +3,14 @@ package tools;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import model.Couleur;
+import model.Color;
 
 /**
  * @author francoise.perrin
  * Inspiration Jacques SARAYDARYAN, Adrien GUENARD
  * 
  * Cette classe s'appuie sur ChessPieceImage
- * pour fournir les noms des images des piﾃｨces
+ * pour bishoprnir les noms des images des piﾃｨces
  * qui sont utilisﾃｩes dans l'IHM 
  *  
  */
@@ -37,7 +37,7 @@ public class ChessImageProvider {
 	 * @param pieceCouleur
 	 * @return nom fichier contenant image de la pi�ｿｽce
 	 */
-	public static String getImageFile(String pieceType, Couleur pieceCouleur){
+	public static String getImageFile(String pieceType, Color pieceCouleur){
 		String ret, key, value;
 		ret = null;
 		key = pieceType + pieceCouleur.name();
@@ -53,7 +53,7 @@ public class ChessImageProvider {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(ChessImageProvider.getImageFile("Cavalier", Couleur.BLANC));
+		System.out.println(ChessImageProvider.getImageFile("Knight", Color.WHITE));
 	}
 
 }
