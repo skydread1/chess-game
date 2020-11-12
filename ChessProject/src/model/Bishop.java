@@ -1,17 +1,17 @@
 package model;
 /**
- * @author lucas/loïc
+ * @author Loic and Lucas
  *
  */
 public class Bishop
 extends AbstractPiece {
 
 	/**
-	 * @param couleur_de_piece
+	 * @param color
 	 * @param coord
 	 */
-	public Bishop(Color couleur_de_piece,Coord coord){
-		super(couleur_de_piece,coord);
+	public Bishop(Color color,Coord coord){
+		super(color,coord);
 		this.name="Bishop";
 
 	}

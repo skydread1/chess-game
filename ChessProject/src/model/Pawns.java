@@ -1,8 +1,8 @@
 package model;
 
 /**
- * @author lucas/loïc
- * interface d'un pawn
+ * @author Loic and Lucas
+ * interface for a pawn
  *
  */
 public interface Pawns {
@@ -10,7 +10,7 @@ public interface Pawns {
 	/**
 	 * @param xFinal
 	 * @param yFinal
-	 * @return un booléen indiquant si le mouvement en diagonal a été effectué
+	 * @return true if the diagonal move in ok
 	 */
 	boolean isMoveDiagOk(int xFinal,int yFinal);
 

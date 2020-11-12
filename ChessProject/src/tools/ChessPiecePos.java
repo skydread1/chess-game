@@ -44,14 +44,14 @@ public enum ChessPiecePos {
 	/**
 	 * color
 	 */
-	public Color couleur;
+	public Color color;
 	/**
 	 * coordinates
 	 */
 	public  Coord[] coords = new Coord[8] ;   
 
-	ChessPiecePos( String nom, Color couleur, Coord[] coords) { 
-		this.nom = nom;this.couleur = couleur;
+	ChessPiecePos( String nom, Color color, Coord[] coords) { 
+		this.nom = nom;this.color = color;
 		this.coords = coords;
 	} 
 

@@ -1,16 +1,16 @@
 package model;
 /**
- * @author lucas/loïc
- * pièce Queen
+ * @author Loic and Lucas
+ * piece Queen
  *
  */
 public class Queen extends AbstractPiece {
 	/**
-	 * @param couleur_de_piece
+	 * @param color
 	 * @param coord
 	 */
-	public Queen(Color couleur_de_piece,Coord coord){
-		super(couleur_de_piece,coord);
+	public Queen(Color color,Coord coord){
+		super(color,coord);
 		this.name="Queen";
 
 	}

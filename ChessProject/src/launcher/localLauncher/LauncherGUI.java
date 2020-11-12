@@ -7,16 +7,16 @@ import javax.swing.JFrame;
 
 import controler.ChessGameControlers;
 import controler.controlerLocal.ChessGameControler;
-import model.observable.ChessGame;
+import model.observable.ChessGameObs;
 import vue.ChessGameGUI;
 
 
 
 /**
  * @author francoise.perrin
- * Lance l'exécution d'un jeu d'échec en mode graphique.
- * La vue (ChessGameGUI) observe le modèle (ChessGame)
- * les échanges passent par le contrôleur (ChessGameControlers)
+ * GUI execution of the game
+ * The View (ChessGameGUI) observes The Model (ChessGame)
+ * Information goes through the Controller (ChessGameControlers)
  * 
  */
 public class LauncherGUI {
@@ -28,14 +28,14 @@ public class LauncherGUI {
 	 */
 	public static void main(String[] args) {
 
-		ChessGame chessGame;	
+		ChessGameObs chessGame;	
 		ChessGameControlers chessGameControler;
 		JFrame frame;	
 		Dimension dim;
 
 		dim = new Dimension(800,800);
 
-		chessGame = new ChessGame();	
+		chessGame = new ChessGameObs();	
 		chessGameControler = new ChessGameControler(chessGame);
 
 		frame = new ChessGameGUI("Jeu d'echec", chessGameControler,  dim);

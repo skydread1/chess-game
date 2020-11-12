@@ -7,7 +7,7 @@ import java.util.List;
 
 import model.Coord;
 import model.Color;
-import model.observable.ChessGame;
+import model.observable.ChessGameObs;
 
 
 /**
@@ -18,27 +18,27 @@ import model.observable.ChessGame;
  * the controller represent the DP Strategy regarding the view
  * 
  * <p>
- * common methods for the controller which consist in establish communication between the view and the model
+ * common methods for the controller which consist in establishing communication between the view and the model
  * 
  * 
  *
  */
 public abstract class AbstractChessGameControler implements ChessGameControlers {
 
-	protected ChessGame chessGame;	 
+	protected ChessGameObs chessGame;	 
 
 	/**
 	 * constructor
 	 * <p>
 	 * @param chessGame
 	 */
-	public AbstractChessGameControler(ChessGame chessGame) {
+	public AbstractChessGameControler(ChessGameObs chessGame) {
 		super();
 		this.chessGame = chessGame;	 
 	}
 
 	/**
-	 * methose abstraite qui fait le lien le deplacement vue et le deplacement model
+	 * Link the View and the Model for the move
 	 * <p>
 	 * @param initCoord
 	 * @param finalCoord
@@ -68,7 +68,7 @@ public abstract class AbstractChessGameControler implements ChessGameControlers 
 	}
 
 	/**
-	 * abstract method for verify the current player
+	 * abstract method to verify the current player
 	 */
 	public abstract boolean isPlayerOK(Coord initCoord) ;
 
@@ -96,7 +96,7 @@ public abstract class AbstractChessGameControler implements ChessGameControlers 
 	protected abstract void endMove(Coord initCoord, Coord finalCoord, String promotionType) ;
 
 	/**
-	 * verify is the dame in finished
+	 * verify is the game has finished
 	 */
 	public boolean isEnd(){
 		return this.chessGame.isEnd();		
@@ -128,7 +128,7 @@ public abstract class AbstractChessGameControler implements ChessGameControlers 
 	}	
 
 	/**
-	 * get the color of the piece specify by the coordinates in parameters
+	 * get the color of the piece specified by the coordinates in parameters
 	 * <p>
 	 * @param initCoord
 	 * <p>

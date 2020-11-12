@@ -1,9 +1,7 @@
 package model;
 
 /**
- * @author francoise.perrin
- * <p>
- * Inspiration Jacques SARAYDARYAN, Adrien GUENARD *
+ * @author loic
  */
 
 

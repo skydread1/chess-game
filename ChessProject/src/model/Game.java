@@ -6,18 +6,17 @@ import java.util.List;
 
 import tools.ChessPiecesFactory;
 /**
- * @author lucas/loïc
- *
+ * @author Loic and Lucas
  */
-public class Jeu extends java.lang.Object{
+public class Game extends java.lang.Object{
 	private List<Pieces> pieces=null;
-	private Color couleur;
+	private Color color;
 	/**
-	 * @param couleur
+	 * @param color
 	 */
-	public Jeu(Color couleur){
-		pieces=ChessPiecesFactory.newPieces(couleur);
-		this.couleur=couleur;
+	public Game(Color color){
+		pieces=ChessPiecesFactory.newPieces(color);
+		this.color=color;
 	}
 
 	/**
@@ -42,10 +41,9 @@ public class Jeu extends java.lang.Object{
 	 */
 	public boolean isMoveOk(int xInit,int yInit,int xFinal,int yFinal){
 		boolean ret=false;
-		//verif si il y a bien une piece à déplacer
+		
 		if(isPieceHere(xInit,yInit))
 		{
-			//recup de la piece a deplacer
 			Pieces pieces=findPiece(xInit,yInit);
 			ret=pieces.isMoveOk(xFinal, yFinal);
 		}
@@ -80,9 +78,9 @@ public class Jeu extends java.lang.Object{
 	 * <p>
 	 * @return true if the capture is possible
 	 */
-	public boolean isCapturePossible(int xCapture, int yCapture){ //attention ne verif pas la couleur de la piece
+	public boolean isCapturePossible(int xCapture, int yCapture){
 		boolean ret=false;
-		//vérif si il y a une piece au coord finales
+		
 		if(isPieceHere(xCapture, yCapture)){
 			ret=true;
 		}
@@ -105,9 +103,6 @@ public class Jeu extends java.lang.Object{
 
 	}
 
-
-
-
 	public java.lang.String toString(){
 		return this.pieces.toString();
 
@@ -123,7 +118,7 @@ public class Jeu extends java.lang.Object{
 		Color ret=Color.BLACKWHITE;
 		if(isPieceHere(x,y)){
 			Pieces pieces=findPiece(x,y);
-			ret= pieces.getCouleur();		
+			ret= pieces.getColor();		
 		}
 		return ret;
 	}
@@ -131,7 +126,7 @@ public class Jeu extends java.lang.Object{
 	/**
 	 * @param x
 	 * @param y
-	 * @return the name of the piece in the coordinates in parameters
+	 * @return the name of the piece at the given coordinates
 	 */
 	public java.lang.String getPieceType(int x,int y){
 		java.lang.String ret=null;
@@ -145,14 +140,14 @@ public class Jeu extends java.lang.Object{
 	/**
 	 * @return the color of the game
 	 */
-	public Color getCouleur(){
-		return this.couleur;	
+	public Color getColor(){
+		return this.color;	
 	}
 
 	/**
 	 * @return une vue de la liste des piﾃｨces en cours
 	 * ne donnant que des accﾃｨs en lecture sur des PieceIHM
-	 * (type piece + couleur + liste de coordonnﾃｩes)
+	 * (type piece + color + liste de coordonnﾃｩes)
 	 */
 	public List<PieceIHM> getPiecesIHM(){
 		PieceIHM newPieceIHM = null;
@@ -176,7 +171,7 @@ public class Jeu extends java.lang.Object{
 			if (! existe) {
 				if (piece.getX() != -1){
 					newPieceIHM = new PieceIHM(piece.getClass().getSimpleName(),
-							piece.getCouleur());
+							piece.getColor());
 					newPieceIHM.add(new Coord(piece.getX(), piece.getY()));
 					list.add(newPieceIHM);
 				}
@@ -186,21 +181,21 @@ public class Jeu extends java.lang.Object{
 	}
 
 	/**
-	 * Sert surement a quelque chose. a voir...
+	 * Not sure yet...
 	 */
 	public void setCastling(){
 
 	}
 
 	/**
-	 * annule le précédant déplacement
+	 * undo previous move
 	 */
 	public void undoMove(){
 
 	}
 
 	/**
-	 * annule la précédante capture
+	 * undo previous capture
 	 */
 	public void undoCapture(){
 
@@ -209,17 +204,17 @@ public class Jeu extends java.lang.Object{
 	/**
 	 * @param xFinal
 	 * @param yFinal
-	 * @return un booléen indiquant si la promotion est possible
+	 * @return true if the pawn promotion is possible
 	 */
 	public boolean isPawnPromotion(int xFinal,int yFinal){
 		boolean ret=false;
-		if(getCouleur()==Color.WHITE){
+		if(getColor()==Color.WHITE){
 			if(yFinal==7){
 				ret= true;
 			}	
 		}
 
-		if(getCouleur()==Color.BLACK){
+		if(getColor()==Color.BLACK){
 			if(yFinal==0){
 				ret= true;
 			}
@@ -228,10 +223,11 @@ public class Jeu extends java.lang.Object{
 	}
 
 	/**
+	 * do the promotion
 	 * @param xFinal
 	 * @param yFinal
 	 * @param type
-	 * @return un booléen indiquant si la promotion a été effectuée correctement
+	 * @return true if the promotion was correctly done
 	 */
 	public boolean pawnPromotion(int xFinal,int yFinal,java.lang.String type){
 		boolean ret=false;
@@ -241,19 +237,19 @@ public class Jeu extends java.lang.Object{
 			piece.move(-1, -1);
 			switch(type){
 			case "Queen":
-				pieces.add(new Queen(piece.getCouleur(),new Coord(xFinal,yFinal)));
+				pieces.add(new Queen(piece.getColor(),new Coord(xFinal,yFinal)));
 				ret=true;
 				break;
 			case "Rock":
-				pieces.add(new Rock(piece.getCouleur(),new Coord(xFinal,yFinal)));
+				pieces.add(new Rock(piece.getColor(),new Coord(xFinal,yFinal)));
 				ret=true;
 				break;
 			case "Bishop":
-				pieces.add(new Bishop(piece.getCouleur(),new Coord(xFinal,yFinal)));
+				pieces.add(new Bishop(piece.getColor(),new Coord(xFinal,yFinal)));
 				ret=true;
 				break;
 			case "Knight":
-				pieces.add(new Knight(piece.getCouleur(),new Coord(xFinal,yFinal)));
+				pieces.add(new Knight(piece.getColor(),new Coord(xFinal,yFinal)));
 				ret=true;
 				break;	
 			default:
@@ -265,7 +261,7 @@ public class Jeu extends java.lang.Object{
 
 
 	/**
-	 * @return les coordonnées du king
+	 * @return the King coordinates
 	 */
 	public Coord getKingCoord(){
 		Coord ret=null;	
@@ -283,6 +279,11 @@ public class Jeu extends java.lang.Object{
 		return ret;
 	}
 
+	/**
+	 * @param x
+	 * @param y
+	 * @return the piece at the given coordinates
+	 */
 	Pieces findPiece(int x, int y)
 	{
 		Pieces ret=null;

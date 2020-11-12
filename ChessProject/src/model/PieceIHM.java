@@ -5,19 +5,19 @@ import java.util.List;
 
 /**
  * @author francoise.perrin
- * Classe qui permet de rerockner des informations sur les pièces
+ * Classe qui permet de retourner des informations sur les pièces
  * en vue d'une utilisation par une IHM
  * 
  */
-public  class PieceIHM {
+public class PieceIHM {
 
 	String type;
-	Color couleur;
+	Color color;
 	List<Coord> list;
 
-	PieceIHM(String type, Color couleur) {
+	PieceIHM(String type, Color color) {
 		this.type = type;
-		this.couleur = couleur;
+		this.color = color;
 		list = new LinkedList<Coord>();
 	}
 
@@ -36,10 +36,10 @@ public  class PieceIHM {
 	}
 
 	/**
-	 * @return the couleur
+	 * @return the color
 	 */
-	public Color getCouleur() {
-		return couleur;
+	public Color getColor() {
+		return color;
 	}
 
 	/**
@@ -54,6 +54,6 @@ public  class PieceIHM {
 	 */
 	@Override
 	public String toString() {
-		return "PieceIHM [type=" + type + ", couleur=" + couleur + ", list=" + list + "]";
+		return "PieceIHM [type=" + type + ", color=" + color + ", list=" + list + "]";
 	}
 }

@@ -9,16 +9,16 @@ extends java.lang.Object
 implements Pieces{
 
 	protected  String name;
-	private Color couleur;
+	private Color color;
 	private Coord coord; 
 
 	/**
-	 * @param couleur
+	 * @param color
 	 * @param coord
 	 */
-	public AbstractPiece(Color couleur, Coord coord){
+	public AbstractPiece(Color color, Coord coord){
 		this.coord=coord;
-		this.couleur=couleur;
+		this.color=color;
 	}
 
 	public String getName() {
@@ -33,8 +33,8 @@ implements Pieces{
 		return this.coord.y;
 	}
 
-	public Color getCouleur(){
-		return this.couleur;	
+	public Color getColor(){
+		return this.color;	
 	}
 
 	/**

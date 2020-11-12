@@ -10,18 +10,18 @@ implements Pawns {
 	/**
 	 * constructor
 	 * <p>
-	 * @param couleur_de_piece
+	 * @param color
 	 * @param coord
 	 */
-	public Pawn(Color couleur_de_piece,Coord coord){
-		super(couleur_de_piece,coord);
+	public Pawn(Color color,Coord coord){
+		super(color,coord);
 		this.name="Pawn";	
 	}
 
 	public boolean isMoveOk(int xFinal,int yFinal){
 		boolean ret=false;
 		if(isMoveOnChest(xFinal,yFinal)){
-			if(getCouleur()==Color.WHITE){
+			if(getColor()==Color.WHITE){
 				if(xFinal==getX() && yFinal==getY()-1){
 					ret= true;
 				}
@@ -30,7 +30,7 @@ implements Pawns {
 				}
 			}
 
-			if(getCouleur()==Color.BLACK)
+			if(getColor()==Color.BLACK)
 			{
 				if(xFinal==getX() && yFinal==getY()+1){
 					ret= true;
@@ -46,14 +46,14 @@ implements Pawns {
 
 	public boolean isMoveDiagOk(int xFinal,int yFinal){
 		boolean ret=false;
-		if(getCouleur()==Color.WHITE){
+		if(getColor()==Color.WHITE){
 			if(isMoveOnChest(xFinal,yFinal)){
 				if(Math.abs(xFinal-getX())==1 && yFinal==getY()-1){
 					ret= true;
 				}
 			}
 		}
-		if(getCouleur()==Color.BLACK){
+		if(getColor()==Color.BLACK){
 			if(isMoveOnChest(xFinal,yFinal)){
 				if(Math.abs(xFinal-getX())==1 && yFinal==getY()+1){
 					ret= true;

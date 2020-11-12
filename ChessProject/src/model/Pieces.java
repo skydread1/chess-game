@@ -2,7 +2,7 @@ package model;
 
 
 /**
- * @author lucas.loic
+ * @author Loic and Lucas
  * <p>
  * Pieces interface
  *
@@ -19,11 +19,11 @@ public interface Pieces {
 	/**
 	 * @return color
 	 */
-	Color getCouleur();
+	Color getColor();
 	/**
 	 * @param xFinal
 	 * @param yFinal
-	 * @return true if the move is ok
+	 * @return true if the move is valid
 	 */
 	boolean isMoveOk(int xFinal,int yFinal);
 	/**
@@ -33,7 +33,7 @@ public interface Pieces {
 	 */
 	boolean move(int xFinal,int yFinal);
 	/**
-	 * @return true if the capute is done
+	 * @return true if the capture is done
 	 */
 	boolean capture();
 	/**

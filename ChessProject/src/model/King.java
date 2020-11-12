@@ -6,12 +6,12 @@ package model;
  */
 public class King extends AbstractPiece {
 	/**
-	 * @param couleur_de_piece
+	 * @param color
 	 * @param coord
 	 * 
 	 */
-	public King(Color couleur_de_piece,Coord coord){
-		super(couleur_de_piece,coord);
+	public King(Color color,Coord coord){
+		super(color,coord);
 		this.name="King";
 
 	}

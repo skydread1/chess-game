@@ -2,7 +2,7 @@ package launcher.localLauncher;
 
 import java.util.Observer;
 
-import model.observable.ChessGame;
+import model.observable.ChessGameObs;
 import vue.ChessGameCmdLine;
 import controler.controlerLocal.ChessGameControler;
 
@@ -10,7 +10,7 @@ import controler.controlerLocal.ChessGameControler;
 /**
  * @author francoise.perrin
  * <p>
- * Lance l'exécution d'un jeu d'échec en mode console.
+ * COnsole mode execution
  */
 public class LauncherCmdLine {
 
@@ -21,11 +21,11 @@ public class LauncherCmdLine {
 	 */
 	public static void main(String[] args) {		
 
-		ChessGame model;
+		ChessGameObs model;
 		ChessGameControler controler;	
 		ChessGameCmdLine vue;
 
-		model = new ChessGame();	
+		model = new ChessGameObs();	
 		controler = new ChessGameControler(model);
 
 		new ChessGameCmdLine(controler);	

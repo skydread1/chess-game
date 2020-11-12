@@ -34,13 +34,13 @@ public class ChessImageProvider {
 
 	/**
 	 * @param pieceType
-	 * @param pieceCouleur
+	 * @param pieceColor
 	 * @return nom fichier contenant image de la pi�ｿｽce
 	 */
-	public static String getImageFile(String pieceType, Color pieceCouleur){
+	public static String getImageFile(String pieceType, Color pieceColor){
 		String ret, key, value;
 		ret = null;
-		key = pieceType + pieceCouleur.name();
+		key = pieceType + pieceColor.name();
 		value = mapImage.get(key);
 		File g=new File("");
 		ret  = g.getAbsolutePath()+ "/images/" + value;

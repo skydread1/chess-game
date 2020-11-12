@@ -2,25 +2,24 @@ package model;
 
 import java.util.List;
 /**
- * @author lucas/loïc
- * Classe echiquier 
- *
+ * @author loic and lucas
+ * Chess board
  */
-public class Echiquier extends java.lang.Object
+public class ChessBoard extends java.lang.Object
 implements BoardGames{
 
-	private Jeu jeu_WHITE;
-	private Jeu  jeu_BLACK;
-	private Jeu  jeu_courant;
-	private Jeu jeu_non_courant;
+	private Game jeu_WHITE;
+	private Game  jeu_BLACK;
+	private Game  jeu_courant;
+	private Game jeu_non_courant;
 	private String message="erreur";
 
 	/**
 	 * 
 	 */
-	public Echiquier(){
-		this.jeu_WHITE=new Jeu(Color.WHITE);
-		this.jeu_BLACK=new Jeu(Color.BLACK);
+	public ChessBoard(){
+		this.jeu_WHITE=new Game(Color.WHITE);
+		this.jeu_BLACK=new Game(Color.BLACK);
 		this.jeu_courant=this.jeu_WHITE;
 		this.jeu_non_courant=this.jeu_BLACK;
 	}
@@ -44,7 +43,7 @@ implements BoardGames{
 	 * Change le joueur courant lorsqu'un joueur termine son rock
 	 */
 	public void switchJoueur(){
-		Jeu temp;
+		Game temp;
 		temp=this.jeu_courant;
 		this.jeu_courant=this.jeu_non_courant;
 		this.jeu_non_courant=temp;
@@ -173,7 +172,7 @@ implements BoardGames{
 					}
 				}
 				else{ 
-					//cas ou piece arrivee est mm couleur que piece joueur courant
+					//cas ou piece arrivee est mm color que piece joueur courant
 					if(this.jeu_courant.isPieceHere(xFinal,yFinal)){
 						ret=false;
 					}
@@ -193,7 +192,7 @@ implements BoardGames{
 			}
 		}
 		else{
-			setMessage("KO: vous ne pouvez deplacer que des pieces de votre couleur");
+			setMessage("KO: vous ne pouvez deplacer que des pieces de votre color");
 		}
 		return ret;		
 	}
@@ -219,7 +218,7 @@ implements BoardGames{
 	}
 
 	public Color getColorCurrentPlayer(){
-		return this.jeu_courant.getCouleur();
+		return this.jeu_courant.getColor();
 	}
 
 	public Color getPieceColor(int x,int y){
@@ -238,7 +237,7 @@ implements BoardGames{
 	public boolean isEnd(){
 		return false;
 		/*
-		 * a coder
+		 * TODO
 		 */
 	}
 

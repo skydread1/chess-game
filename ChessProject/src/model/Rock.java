@@ -1,22 +1,19 @@
 package model;
 /**
- * @author lucas/loïc
- * pièce Rock
- *
+ * @author Loic and Lucas
+ * piece Rock
  */
 public class Rock
 extends AbstractPiece {
 	/**
-	 * @param couleur_de_piece
+	 * @param color
 	 * @param coord
 	 * 
 	 */
-	public Rock(Color couleur_de_piece,Coord coord){
-		super(couleur_de_piece,coord);
+	public Rock(Color color,Coord coord){
+		super(color,coord);
 		this.name="Rock";
-
 	}
-
 
 	public boolean isMoveOk(int xFinal,int yFinal){
 		boolean ret=false;
@@ -27,5 +24,4 @@ extends AbstractPiece {
 		}
 		return ret;
 	}
-
 }

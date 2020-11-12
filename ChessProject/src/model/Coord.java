@@ -4,10 +4,9 @@ import java.io.Serializable;
 
 
 /**
- * @author francoise.perrin
+ * @author loic
  * <p>
  * do the coordinate treatments for the model
- *
  */
 @SuppressWarnings("serial")
 public class Coord implements Serializable {

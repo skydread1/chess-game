@@ -6,7 +6,7 @@ import java.util.Observer;
 
 import model.BoardGames;
 import model.Color;
-import model.Echiquier;
+import model.ChessBoard;
 
 
 /**
@@ -17,24 +17,24 @@ import model.Echiquier;
  * (DP Proxy, Facade, Observer)
  *
  */
-public class ChessGame extends Observable implements BoardGames{
+public class ChessGameObs extends Observable implements BoardGames{
 
-	private Echiquier echiquier;
+	private ChessBoard echiquier;
 
 	/**
 	 * Cree une instance de la classe Echiquier
 	 * et notifie ses observateurs
 	 */
-	public ChessGame() {
+	public ChessGameObs() {
 		super();
-		this.echiquier = new Echiquier();
+		this.echiquier = new ChessBoard();
 		this.notifyObservers(echiquier.getPiecesIHM()); 
 	}
 
 	/**
 	 * @return l'attribut l'echiquier 
 	 */
-	public Echiquier getEchiquier(){
+	public ChessBoard getEchiquier(){
 		return this.echiquier;
 	}
 

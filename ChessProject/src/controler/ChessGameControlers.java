@@ -40,7 +40,7 @@ public interface ChessGameControlers {
 	/**
 	 * @param x
 	 * @param y
-	 * @return les coordonnées des cases où la pièce peut aller
+	 * @return The coordinates of the potential moves
 	 */
 	public List<Coord> whereCanYouGo(int x,int y);
 
