@@ -3,32 +3,32 @@ package launcher.localLauncher;
 import java.util.Observer;
 
 import model.observable.ChessGameObs;
-import vue.ChessGameCmdLine;
+import view.ChessGameCmdLine;
 import controler.controlerLocal.ChessGameControler;
 
-
 /**
- * @author francoise.perrin
+ * @author Loic and Lucas
  * <p>
- * COnsole mode execution
+ * Command line launcher
  */
 public class LauncherCmdLine {
 
 	/**
 	 * main of the launcher in command line
 	 * <p>
+	 * 
 	 * @param args
 	 */
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
 
 		ChessGameObs model;
-		ChessGameControler controler;	
+		ChessGameControler controler;
 		ChessGameCmdLine vue;
 
-		model = new ChessGameObs();	
+		model = new ChessGameObs();
 		controler = new ChessGameControler(model);
 
-		new ChessGameCmdLine(controler);	
+		new ChessGameCmdLine(controler);
 
 		vue = new ChessGameCmdLine(controler);
 		model.addObserver((Observer) vue);

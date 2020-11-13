@@ -8,37 +8,35 @@ import javax.swing.JFrame;
 import controler.ChessGameControlers;
 import controler.controlerLocal.ChessGameControler;
 import model.observable.ChessGameObs;
-import vue.ChessGameGUI;
-
-
+import view.ChessGameGUI;
 
 /**
- * @author francoise.perrin
- * GUI execution of the game
- * The View (ChessGameGUI) observes The Model (ChessGame)
+ * @author Loic and Lucas
+ * <p>
+ * GUI launcher The View (ChessGameGUI) observes The Model (ChessGame)
  * Information goes through the Controller (ChessGameControlers)
- * 
  */
 public class LauncherGUI {
 
 	/**
-	 * main for the graphic launcher
+	 * main for the GUI launcher
 	 * <p>
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
 
-		ChessGameObs chessGame;	
+		ChessGameObs chessGame;
 		ChessGameControlers chessGameControler;
-		JFrame frame;	
+		JFrame frame;
 		Dimension dim;
 
-		dim = new Dimension(800,800);
+		dim = new Dimension(800, 800);
 
-		chessGame = new ChessGameObs();	
+		chessGame = new ChessGameObs();
 		chessGameControler = new ChessGameControler(chessGame);
 
-		frame = new ChessGameGUI("Jeu d'echec", chessGameControler,  dim);
+		frame = new ChessGameGUI("Game d'echec", chessGameControler, dim);
 		chessGame.addObserver((Observer) frame);
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

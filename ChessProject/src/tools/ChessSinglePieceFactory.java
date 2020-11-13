@@ -10,15 +10,13 @@ import model.Pieces;
  * @author francoise.perrin
  * Inspiration Jacques SARAYDARYAN, Adrien GUENARD
  * 
- * Classe qui fabrique 1 pièce de jeu d'echec
- * de la color, du type et aux coordonnées
- * passées en paramètre
+ * Create one chess game piece given the color, the type and the coordinates
  *
  */
 public class ChessSinglePieceFactory {
 
 	/**
-	 * private pour ne pas instancier d'objets
+	 * private to avoid instantiation
 	 */
 	private ChessSinglePieceFactory() {
 
@@ -35,7 +33,7 @@ public class ChessSinglePieceFactory {
 
 		Pieces piece = null;
 
-		String className = "model." + type;	// attention au chemin		
+		String className = "model." + type;	// mind the path		
 		Coord pieceCoord = new Coord(x, y);
 		piece = (Pieces) Introspection.newInstance (className,
 				new Object[] {pieceColor, pieceCoord});
@@ -44,7 +42,7 @@ public class ChessSinglePieceFactory {
 	}
 
 	/**
-	 * Tests unitaires
+	 * Unit tests
 	 * @param args
 	 */
 	public static void main(String[] args) {

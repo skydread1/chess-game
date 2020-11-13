@@ -1,30 +1,30 @@
 package model;
 
-
 /**
- * @author Loic
- * Interface representing general board games behavior
+ * @author Loic and Lucas
+ * <p>
+ * Interface representing a generic board game behavior
  */
-public interface BoardGames {	
+public interface BoardGames {
 
 	/**
 	 * Given the initial coordinates, move the piece to the final coordinates
+	 * 
 	 * @param xInit
 	 * @param yInit
 	 * @param xFinal
 	 * @param yFinal
-	 * @return OK if move OK 
+	 * @return true once the move is done
 	 */
-	public boolean move (int xInit, int yInit, int xFinal, int yFinal); 
-
+	public boolean move(int xInit, int yInit, int xFinal, int yFinal);
 
 	/**
-	 * @return true if end is reached
+	 * @return true if game has ended
 	 */
 	public boolean isEnd();
 
 	/**
-	 * @return the game state
+	 * @return string representation of the game
 	 */
 	public String getMessage();
 
@@ -36,7 +36,7 @@ public interface BoardGames {
 	/**
 	 * @param x
 	 * @param y
-	 * @return the current selected piece color
+	 * @return the current piece color
 	 */
 	public Color getPieceColor(int x, int y);
 

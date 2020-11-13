@@ -1,4 +1,4 @@
-package vue;
+package view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -17,7 +17,7 @@ import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import tools.ChessImageProvider;
 import model.Coord;
-import model.PieceIHM;
+import model.PieceHMI;
 //import model.observable.ChessGame;
 import controler.ChessGameControlers;
 //import controler.controlerLocal.ChessGameControler;
@@ -66,13 +66,13 @@ public class ChessGameGUI extends javax.swing.JFrame implements java.awt.event.M
 	@Override
 	public void update(Observable arg0, Object arg1) {
 		// TODO Auto-generated method stub
-		List<PieceIHM> Liste_PiecesIHM = (List<PieceIHM>) arg1;
+		List<PieceHMI> Liste_PiecesIHM = (List<PieceHMI>) arg1;
 		//Add a chess board to the Layered Pane 
 
 		init();
 		
 
-		for(PieceIHM p:Liste_PiecesIHM)
+		for(PieceHMI p:Liste_PiecesIHM)
 		{                 
 			for(Coord c:p.getList())
 			{

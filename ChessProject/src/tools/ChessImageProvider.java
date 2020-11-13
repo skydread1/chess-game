@@ -6,12 +6,10 @@ import java.util.Map;
 import model.Color;
 
 /**
- * @author francoise.perrin
- * Inspiration Jacques SARAYDARYAN, Adrien GUENARD
+ * @author Loic and Lucas
  * 
- * Cette classe s'appuie sur ChessPieceImage
- * pour bishoprnir les noms des images des piﾃｨces
- * qui sont utilisﾃｩes dans l'IHM 
+ * Uses ChessPieceImqge to provide the name of the piece images
+ * that are used in the HMI
  *  
  */
 public class ChessImageProvider {
@@ -26,7 +24,7 @@ public class ChessImageProvider {
 	}
 
 	/**
-	 * private pour ne pas instancier d'objets
+	 * Is private to avoid instantiation
 	 */
 	private ChessImageProvider() {
 
@@ -35,7 +33,7 @@ public class ChessImageProvider {
 	/**
 	 * @param pieceType
 	 * @param pieceColor
-	 * @return nom fichier contenant image de la pi�ｿｽce
+	 * @return file name of the piece image
 	 */
 	public static String getImageFile(String pieceType, Color pieceColor){
 		String ret, key, value;
@@ -49,7 +47,7 @@ public class ChessImageProvider {
 	}
 
 	/**
-	 * Test unitaires
+	 * Unit test
 	 * @param args
 	 */
 	public static void main(String[] args) {

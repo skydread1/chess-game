@@ -1,4 +1,4 @@
-package vue;
+package view;
 
 import java.util.List;
 import java.util.Observable;
@@ -6,7 +6,7 @@ import java.util.Observer;
 
 import model.Coord;
 import model.Color;
-import model.PieceIHM;
+import model.PieceHMI;
 import controler.controlerLocal.ChessGameControler;
 
 
@@ -15,7 +15,7 @@ import controler.controlerLocal.ChessGameControler;
  * @author francoise.perrin
  * Inspiration Jacques SARAYDARYAN, Adrien GUENARD *
  * 
- * Vue console d'un jeu d echec
+ * Vue console d'un game d echec
  * Cette classe est un observateur et le damier est mis a jour a chaque changement dans la classe metier
  */
 public class ChessGameCmdLine implements Observer{
@@ -35,13 +35,13 @@ public class ChessGameCmdLine implements Observer{
 		System.out.println(chessGameControler.getMessage() + "\n");	
 
 		@SuppressWarnings("unchecked")
-		List<PieceIHM> piecesIHM = (List<PieceIHM>) arg1;
+		List<PieceHMI> piecesIHM = (List<PieceHMI>) arg1;
 
 
 		String[][] damier = new String[8][8];
 
 		// crﾃｩation d'un tableau 2D avec les noms des piﾃｨces
-		for(PieceIHM pieceIHM : piecesIHM) {
+		for(PieceHMI pieceIHM : piecesIHM) {
 
 			Color color = pieceIHM.getColor();
 			String stColor = (Color.WHITE == color ? "B_" : "N_" );

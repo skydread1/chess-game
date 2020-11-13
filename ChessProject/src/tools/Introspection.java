@@ -12,20 +12,19 @@ import java.lang.reflect.Method;
 public class Introspection {
 
 	/**
-	 * private pour emp�cher de cr�er des instances de la classe
+	 * private to avoid instantiation
 	 */
 	private Introspection() {
 
 	}
 
 	/**
-	 * Invocation d'une m�thode connaissant son nom sur un objet o
-	 * en lui passant les bons param�tres
+	 * method invocation knowing its name on an object o given the right parameters
 	 * 
-	 * @param o - l'objet sur lequel agit la m�thode
-	 * @param args - la liste des param�tres de la m�thode
-	 * @param nomMethode - le nom de la m�thode
-	 * @return la m�thode invoqu�e
+	 * @param o - the object in which the method is acting
+	 * @param args - method parameters list
+	 * @param nomMethode - method name
+	 * @return invoked method
 	 * @throws Exception
 	 */
 	public static Object invoke(Object o, Object[] args, String nomMethode ) throws Exception	{
@@ -42,11 +41,11 @@ public class Introspection {
 
 
 	/**
-	 * cr�ation d'un objet connaissant le nom de la classe
-	 * utilise un constructeur sans param�tre
+	 * Object creation knowing the class name
+	 * Uses a no-argument constructor
 	 * 
 	 * @param className
-	 * @return le nouvel objet cr�e
+	 * @return the newly created object
 	 */
 	public static Object newInstance(String className) {
 		Object o = null;
@@ -54,15 +53,15 @@ public class Introspection {
 			o = Class.forName (className).newInstance ();
 		}
 		catch (ClassNotFoundException e)	    {
-			// La classe n'existe pas
+			// the class does not exist
 			e.printStackTrace();
 		}
 		catch (InstantiationException e)	    {
-			// La classe est abstract ou est une interface ou n'a pas de constructeur accessible sans param�tre
+			// the class is abstract or an interface or without constructor accessible without parameters
 			e.printStackTrace();
 		}
 		catch (IllegalAccessException e)	    {
-			// La classe n'est pas accessible
+			// the class is not accessible
 			e.printStackTrace();
 		}
 		return o;
@@ -70,19 +69,19 @@ public class Introspection {
 
 
 	/**
-	 * construction � partir du nom de la classe et des param�tres du constructeur
+	 * construction from the class name and the constructor parameters
 	 * 
 	 * @param className
-	 * @param args - la liste des arguments du constructeur
-	 * @return le nouvel objet cr�e
+	 * @param args - constructor arguments list
+	 * @return the newly created object
 	 */
 	public static Object newInstance(String className, Object[] args)	 {
 		Object o = null;
 
 		try {
-			//On cr�e un objet Class
+			// create object class
 			Class<?> classe = Class.forName(className);
-			// on r�cup�re le constructeur qui a les param�tres args
+			// fetch the constructor corresponding to the args
 			Class<?>[] paramTypes = null;
 			if(args != null){
 				paramTypes = new Class[args.length];
@@ -91,32 +90,31 @@ public class Introspection {
 				}
 			}
 			Constructor<?> ct = classe.getConstructor(paramTypes);
-			// on instantie un nouvel objet avec ce constructeur et le bon param�tre
+			// instantiates the new object with the constructor and the appropriate parameters
 			o =  ct.newInstance (args);		
 		}
 		catch (ClassNotFoundException e)		{
-			// La classe n'existe pas
+			// the class does not exist
 			e.printStackTrace();
 		}
 		catch (NoSuchMethodException e)		{
-			// La classe n'a pas le constructeur recherch�
+			// the class does not have the constructor
 			e.printStackTrace();
 		}
 		catch (InstantiationException e)		{
-			// La classe est abstract ou est une interface
+			// the class is abstract or an interface
 			e.printStackTrace();
 		}
 		catch (IllegalAccessException e)		{
-			// La classe n'est pas accessible
+			// the class is not accessible
 			e.printStackTrace();
 		}
 		catch (java.lang.reflect.InvocationTargetException e)		{
-			// Exception d�clench�e si le constructeur invoqu�
-			// a lui-m�me d�clench� une exception
+			// Raises exception is the invoked constructor raises an exception
 			e.printStackTrace();
 		}
 		catch (IllegalArgumentException e)		{
-			// Mauvais type de param�tre			
+			// Wrong types of parameters 			
 			e.printStackTrace();
 		}
 		return o;

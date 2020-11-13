@@ -4,18 +4,17 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- * @author francoise.perrin
- * Classe qui permet de retourner des informations sur les pièces
- * en vue d'une utilisation par une IHM
- * 
+ * @author Loic and Lucas
+ * <p>
+ * Pieces information on the View that are meant to be use by HMI 
  */
-public class PieceIHM {
+public class PieceHMI {
 
 	String type;
 	Color color;
 	List<Coord> list;
 
-	PieceIHM(String type, Color color) {
+	PieceHMI(String type, Color color) {
 		this.type = type;
 		this.color = color;
 		list = new LinkedList<Coord>();
@@ -24,7 +23,7 @@ public class PieceIHM {
 	/**
 	 * @param coord
 	 */
-	public void add(Coord coord){
+	public void add(Coord coord) {
 		list.add(coord);
 	}
 
@@ -49,9 +48,6 @@ public class PieceIHM {
 		return list;
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#toString()
-	 */
 	@Override
 	public String toString() {
 		return "PieceIHM [type=" + type + ", color=" + color + ", list=" + list + "]";

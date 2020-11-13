@@ -11,14 +11,13 @@ import model.Pieces;
  * @author francoise.perrin
  * Inspiration Jacques SARAYDARYAN, Adrien GUENARD
  * 
- * Classe qui fabrique une liste de pieces de jeu d'echec
- * de la color pass�e en param�tre
+ * Build the HMI pieces given the color.
  *
  */
 public class ChessPiecesFactory {
 
 	/**
-	 * private pour ne pas instancier d'objets
+	 * private to avoid instantiation
 	 */
 	private ChessPiecesFactory() {
 
@@ -26,7 +25,7 @@ public class ChessPiecesFactory {
 
 	/**
 	 * @param pieceColor
-	 * @return liste de pi�ces de jeu d'�chec
+	 * @return CHess game piece list
 	 */
 	public static List<Pieces> newPieces(Color pieceColor){
 
@@ -51,7 +50,7 @@ public class ChessPiecesFactory {
 	}
 
 	/**
-	 * Tests unitaires
+	 * Unit Tests
 	 * @param args
 	 */
 	public static void main(String[] args) {

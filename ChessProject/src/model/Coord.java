@@ -2,11 +2,10 @@ package model;
 
 import java.io.Serializable;
 
-
 /**
- * @author loic
+ * @author loic and Lucas
  * <p>
- * do the coordinate treatments for the model
+ * Coordinates for the model
  */
 @SuppressWarnings("serial")
 public class Coord implements Serializable {
@@ -17,11 +16,12 @@ public class Coord implements Serializable {
 	/**
 	 * constructor
 	 * <p>
+	 * 
 	 * @param x
 	 * @param y
 	 */
 	public Coord(int x, int y) {
-		this.x = x; 
+		this.x = x;
 		this.y = y;
 	}
 
@@ -31,15 +31,16 @@ public class Coord implements Serializable {
 	}
 
 	/**
-	 * verify if the coordinate of in the chest, between 0 and 7
+	 * verify if the coordinates are in the chess, between 0 and 7
 	 * <p>
+	 * 
 	 * @param x
 	 * @param y
-	 * <p>
-	 * @return true if the coordinates are in the chest
+	 *          <p>
+	 * @return true if the coordinates are in the chess board
 	 */
-	public static boolean coordonnees_valides(int x, int y){
-		return ( (x<=7) && (x>=0) && (y<=7) && (y>=0) );
+	public static boolean coordonnees_valides(int x, int y) {
+		return ((x <= 7) && (x >= 0) && (y <= 7) && (y >= 0));
 	}
 
 	@Override
@@ -66,6 +67,4 @@ public class Coord implements Serializable {
 			return false;
 		return true;
 	}
-
-
 }
