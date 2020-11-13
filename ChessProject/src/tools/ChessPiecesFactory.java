@@ -4,45 +4,42 @@ import java.util.LinkedList;
 import java.util.List;
 
 import model.Coord;
-import model.Couleur;
+import model.Color;
 import model.Pieces;
 
 /**
- * @author francoise.perrin
- * Inspiration Jacques SARAYDARYAN, Adrien GUENARD
- * 
- * Classe qui fabrique une liste de pieces de jeu d'echec
- * de la couleur pass�e en param�tre
- *
+ * @author Loic and Lucas
+ * <p>
+ * Build the HMI pieces given the color.
  */
 public class ChessPiecesFactory {
 
 	/**
-	 * private pour ne pas instancier d'objets
+	 * private to avoid instantiation
 	 */
 	private ChessPiecesFactory() {
 
 	}
 
 	/**
-	 * @param pieceCouleur
-	 * @return liste de pi�ces de jeu d'�chec
+	 * @param pieceColor
+	 * @return CHess game piece list
 	 */
-	public static List<Pieces> newPieces(Couleur pieceCouleur){
+	public static List<Pieces> newPieces(Color pieceColor) {
 
 		List<Pieces> pieces = null;
 		pieces = new LinkedList<Pieces>();
-		//String initCouleur = (Couleur.BLANC == pieceCouleur ? "B_" : "N_" );
+		// String initColor = (Color.WHITE == pieceColor ? "B_" : "N_" );
 
-		if (pieceCouleur != null){
+		if (pieceColor != null) {
 			for (int i = 0; i < ChessPiecePos.values().length; i++) {
 
-				if (pieceCouleur.equals(ChessPiecePos.values()[i].couleur)) {
+				if (pieceColor.equals(ChessPiecePos.values()[i].color)) {
 					for (int j = 0; j < (ChessPiecePos.values()[i].coords).length; j++) {
-						String className = "model." + ChessPiecePos.values()[i].nom;	// attention au chemin
+						String className = "model." + ChessPiecePos.values()[i].nom; // mind the path format
 						Coord pieceCoord = ChessPiecePos.values()[i].coords[j];
-						pieces.add((Pieces) Introspection.newInstance (className,
-								new Object[] {pieceCouleur, pieceCoord}));
+						pieces.add(
+								(Pieces) Introspection.newInstance(className, new Object[] { pieceColor, pieceCoord }));
 					}
 				}
 			}
@@ -51,10 +48,11 @@ public class ChessPiecesFactory {
 	}
 
 	/**
-	 * Tests unitaires
+	 * Unit Tests
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(ChessPiecesFactory.newPieces(Couleur.BLANC));
+		System.out.println(ChessPiecesFactory.newPieces(Color.WHITE));
 	}
 }

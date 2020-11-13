@@ -1,41 +1,25 @@
 package tools;
 
-
 /**
- * @author francoise.perrin
- *
+ * @author Loic and Lucas
  */
 public enum ChessPieceImage {
 
+	@SuppressWarnings("javadoc")
+	ROCKWHITE("RockWHITE", "rockWhiteS.png"), @SuppressWarnings("javadoc")
+	KNIGHTWHITE("KnightWHITE", "knightWhiteS.png"), @SuppressWarnings("javadoc")
+	BISHOPWHITE("BishopWHITE", "bishopWhiteS.png"), @SuppressWarnings("javadoc")
+	QUEENWHITE("QueenWHITE", "queenWhiteS.png"), @SuppressWarnings("javadoc")
+	KINGWHITE("KingWHITE", "kingWhiteS.png"), @SuppressWarnings("javadoc")
+	PAWNWHITE("PawnWHITE", "pawnWhiteS.png"),
 
 	@SuppressWarnings("javadoc")
-	TOURBLANC("TourBLANC", "tourBlancS.png"),
-	@SuppressWarnings("javadoc")
-	CAVALIERBLANC("CavalierBLANC", "cavalierBlancS.png"), 
-	@SuppressWarnings("javadoc")
-	FOUBLANC("FouBLANC",  "fouBlancS.png"), 
-	@SuppressWarnings("javadoc")
-	REINEBLANC("ReineBLANC", "reineBlancS.png"), 
-	@SuppressWarnings("javadoc")
-	ROIBLANC("RoiBLANC", "roiBlancS.png"),
-	@SuppressWarnings("javadoc")
-	PIONBLANC("PionBLANC", "pionBlancS.png"),
-
-	@SuppressWarnings("javadoc")
-	TOURNOIR("TourNOIR", "tourNoireS.png"),
-	@SuppressWarnings("javadoc")
-	CAVALIERNOIR("CavalierNOIR", "cavalierNoirS.png"), 
-	@SuppressWarnings("javadoc")
-	FOUNOIR( "FouNOIR", "fouNoirS.png"), 
-	@SuppressWarnings("javadoc")
-	REINENOIR("ReineNOIR", "reineNoireS.png"), 
-	@SuppressWarnings("javadoc")
-	ROINOIR("RoiNOIR", "roiNoirS.png"),
-	@SuppressWarnings("javadoc")
-	PIONNOIR("PionNOIR", "pionNoirS.png")   
-	; 
-
-
+	ROCKBLACK("RockBLACK", "rockBlackS.png"), @SuppressWarnings("javadoc")
+	KNIGHTBLACK("KnightBLACK", "knightBlackS.png"), @SuppressWarnings("javadoc")
+	BISHOPBLACK("BishopBLACK", "bishopBlackS.png"), @SuppressWarnings("javadoc")
+	QUEENBLACK("QueenBLACK", "queenBlackS.png"), @SuppressWarnings("javadoc")
+	KINGBLACK("KingBLACK", "kingBlackS.png"), @SuppressWarnings("javadoc")
+	PAWNBLACK("PawnBLACK", "pawnBlackS.png");
 
 	/**
 	 * name
@@ -44,12 +28,11 @@ public enum ChessPieceImage {
 	/**
 	 * image file
 	 */
-	public  String imageFile ;   
+	public String imageFile;
 
-	ChessPieceImage(String nom,  String imageFile) { 
+	ChessPieceImage(String nom, String imageFile) {
 		this.nom = nom;
 		this.imageFile = imageFile;
-	} 
+	}
 
 }
-

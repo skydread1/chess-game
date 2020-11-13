@@ -1,53 +1,48 @@
 package tools;
 
-
-
 import model.Coord;
-import model.Couleur;
+import model.Color;
 import model.Pieces;
 
 /**
- * @author francoise.perrin
- * Inspiration Jacques SARAYDARYAN, Adrien GUENARD
- * 
- * Classe qui fabrique 1 pièce de jeu d'echec
- * de la couleur, du type et aux coordonnées
- * passées en paramètre
- *
+ * @author Loic and Lucas
+ *         <p>
+ *         Create one chess game piece given the color, the type and the
+ *         coordinates
  */
 public class ChessSinglePieceFactory {
 
 	/**
-	 * private pour ne pas instancier d'objets
+	 * private to avoid instantiation
 	 */
 	private ChessSinglePieceFactory() {
 
 	}
 
 	/**
-	 * @param pieceCouleur
-	 * @param type 
-	 * @param x 
-	 * @param y 
-	 * @return pieces of a chest game list
+	 * @param pieceColor
+	 * @param type
+	 * @param x
+	 * @param y
+	 * @return pieces of a chess game list
 	 */
-	public static Pieces newPiece(Couleur pieceCouleur, String type, int x, int y){
+	public static Pieces newPiece(Color pieceColor, String type, int x, int y) {
 
 		Pieces piece = null;
 
-		String className = "model." + type;	// attention au chemin		
+		String className = "model." + type; // mind the path format
 		Coord pieceCoord = new Coord(x, y);
-		piece = (Pieces) Introspection.newInstance (className,
-				new Object[] {pieceCouleur, pieceCoord});
+		piece = (Pieces) Introspection.newInstance(className, new Object[] { pieceColor, pieceCoord });
 
 		return piece;
 	}
 
 	/**
-	 * Tests unitaires
+	 * Unit tests
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(ChessSinglePieceFactory.newPiece(Couleur.BLANC, "Tour", 0, 6));
+		System.out.println(ChessSinglePieceFactory.newPiece(Color.WHITE, "Rock", 0, 6));
 	}
 }

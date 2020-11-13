@@ -6,13 +6,11 @@ import model.Coord;
 
 /**
  * 
- * @author lucas.loic
+ * @author Loic and Lucas
  * <p>
  * controller interface
- *
  */
 public interface ChessGameControlers {
-
 
 	/**
 	 * @param initCoord
@@ -22,26 +20,26 @@ public interface ChessGameControlers {
 	public boolean move(Coord initCoord, Coord finalCoord);
 
 	/**
-	 * @return message related to the error type
+	 * @return the detailed message of this Throwable instance
 	 */
 	public String getMessage();
 
 	/**
-	 * @return true is the game end in legal
+	 * @return true is the has ended
 	 */
 	public boolean isEnd();
 
 	/**
 	 * @param initCoord
-	 * @return info which will allow to avoid a chest move in the view 
+	 * @return true if the player is valid
 	 */
 	public boolean isPlayerOK(Coord initCoord);
 
 	/**
 	 * @param x
 	 * @param y
-	 * @return les coordonnées des cases où la pièce peut aller
+	 * @return The coordinates of the potential moves
 	 */
-	public List<Coord> whereCanYouGo(int x,int y);
+	public List<Coord> whereCanYouGo(int x, int y);
 
 }

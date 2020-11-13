@@ -2,33 +2,33 @@ package launcher.localLauncher;
 
 import java.util.Observer;
 
-import model.observable.ChessGame;
-import vue.ChessGameCmdLine;
+import model.observable.ChessGameObs;
+import view.ChessGameCmdLine;
 import controler.controlerLocal.ChessGameControler;
 
-
 /**
- * @author francoise.perrin
+ * @author Loic and Lucas
  * <p>
- * Lance l'exécution d'un jeu d'échec en mode console.
+ * Command line launcher
  */
 public class LauncherCmdLine {
 
 	/**
 	 * main of the launcher in command line
 	 * <p>
+	 * 
 	 * @param args
 	 */
-	public static void main(String[] args) {		
+	public static void main(String[] args) {
 
-		ChessGame model;
-		ChessGameControler controler;	
+		ChessGameObs model;
+		ChessGameControler controler;
 		ChessGameCmdLine vue;
 
-		model = new ChessGame();	
+		model = new ChessGameObs();
 		controler = new ChessGameControler(model);
 
-		new ChessGameCmdLine(controler);	
+		new ChessGameCmdLine(controler);
 
 		vue = new ChessGameCmdLine(controler);
 		model.addObserver((Observer) vue);

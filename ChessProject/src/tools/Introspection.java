@@ -3,125 +3,110 @@ package tools;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
-
 /**
- * @author francoise.perrin - 
+ * @author francoise.perrin
+ * <p>
  * Inspiration : http://www.jmdoudoux.fr/java/dej/chap-introspection.htm
- * 
  */
 public class Introspection {
 
 	/**
-	 * private pour emp�cher de cr�er des instances de la classe
+	 * private to avoid instantiation
 	 */
 	private Introspection() {
 
 	}
 
 	/**
-	 * Invocation d'une m�thode connaissant son nom sur un objet o
-	 * en lui passant les bons param�tres
+	 * method invocation knowing its name on an object o given the right parameters
 	 * 
-	 * @param o - l'objet sur lequel agit la m�thode
-	 * @param args - la liste des param�tres de la m�thode
-	 * @param nomMethode - le nom de la m�thode
-	 * @return la m�thode invoqu�e
+	 * @param o          - the object in which the method is acting
+	 * @param args       - method parameters list
+	 * @param nomMethode - method name
+	 * @return invoked method
 	 * @throws Exception
 	 */
-	public static Object invoke(Object o, Object[] args, String nomMethode ) throws Exception	{
+	public static Object invoke(Object o, Object[] args, String nomMethode) throws Exception {
 		Class<? extends Object>[] paramTypes = null;
-		if(args != null){
+		if (args != null) {
 			paramTypes = new Class<?>[args.length];
-			for(int i=0;i<args.length;++i)	{
+			for (int i = 0; i < args.length; ++i) {
 				paramTypes[i] = args[i].getClass();
 			}
 		}
-		Method m = o.getClass().getMethod(nomMethode,paramTypes);
-		return m.invoke(o,args);
+		Method m = o.getClass().getMethod(nomMethode, paramTypes);
+		return m.invoke(o, args);
 	}
 
-
 	/**
-	 * cr�ation d'un objet connaissant le nom de la classe
-	 * utilise un constructeur sans param�tre
+	 * Object creation knowing the class name Uses a no-argument constructor
 	 * 
 	 * @param className
-	 * @return le nouvel objet cr�e
+	 * @return the newly created object
 	 */
 	public static Object newInstance(String className) {
 		Object o = null;
-		try	    {
-			o = Class.forName (className).newInstance ();
-		}
-		catch (ClassNotFoundException e)	    {
-			// La classe n'existe pas
+		try {
+			o = Class.forName(className).newInstance();
+		} catch (ClassNotFoundException e) {
+			// the class does not exist
 			e.printStackTrace();
-		}
-		catch (InstantiationException e)	    {
-			// La classe est abstract ou est une interface ou n'a pas de constructeur accessible sans param�tre
+		} catch (InstantiationException e) {
+			// the class is abstract or an interface or without constructor accessible
+			// without parameters
 			e.printStackTrace();
-		}
-		catch (IllegalAccessException e)	    {
-			// La classe n'est pas accessible
+		} catch (IllegalAccessException e) {
+			// the class is not accessible
 			e.printStackTrace();
 		}
 		return o;
 	}
 
-
 	/**
-	 * construction � partir du nom de la classe et des param�tres du constructeur
+	 * construction from the class name and the constructor parameters
 	 * 
 	 * @param className
-	 * @param args - la liste des arguments du constructeur
-	 * @return le nouvel objet cr�e
+	 * @param args      - constructor arguments list
+	 * @return the newly created object
 	 */
-	public static Object newInstance(String className, Object[] args)	 {
+	public static Object newInstance(String className, Object[] args) {
 		Object o = null;
 
 		try {
-			//On cr�e un objet Class
+			// create object class
 			Class<?> classe = Class.forName(className);
-			// on r�cup�re le constructeur qui a les param�tres args
+			// fetch the constructor corresponding to the args
 			Class<?>[] paramTypes = null;
-			if(args != null){
+			if (args != null) {
 				paramTypes = new Class[args.length];
-				for(int i=0;i<args.length;++i)	{
+				for (int i = 0; i < args.length; ++i) {
 					paramTypes[i] = args[i].getClass();
 				}
 			}
 			Constructor<?> ct = classe.getConstructor(paramTypes);
-			// on instantie un nouvel objet avec ce constructeur et le bon param�tre
-			o =  ct.newInstance (args);		
-		}
-		catch (ClassNotFoundException e)		{
-			// La classe n'existe pas
+			// instantiates the new object with the constructor and the appropriate
+			// parameters
+			o = ct.newInstance(args);
+		} catch (ClassNotFoundException e) {
+			// the class does not exist
 			e.printStackTrace();
-		}
-		catch (NoSuchMethodException e)		{
-			// La classe n'a pas le constructeur recherch�
+		} catch (NoSuchMethodException e) {
+			// the class does not have the constructor
 			e.printStackTrace();
-		}
-		catch (InstantiationException e)		{
-			// La classe est abstract ou est une interface
+		} catch (InstantiationException e) {
+			// the class is abstract or an interface
 			e.printStackTrace();
-		}
-		catch (IllegalAccessException e)		{
-			// La classe n'est pas accessible
+		} catch (IllegalAccessException e) {
+			// the class is not accessible
 			e.printStackTrace();
-		}
-		catch (java.lang.reflect.InvocationTargetException e)		{
-			// Exception d�clench�e si le constructeur invoqu�
-			// a lui-m�me d�clench� une exception
+		} catch (java.lang.reflect.InvocationTargetException e) {
+			// Raises exception is the invoked constructor raises an exception
 			e.printStackTrace();
-		}
-		catch (IllegalArgumentException e)		{
-			// Mauvais type de param�tre			
+		} catch (IllegalArgumentException e) {
+			// Wrong types of parameters
 			e.printStackTrace();
 		}
 		return o;
 	}
-
-
 
 }

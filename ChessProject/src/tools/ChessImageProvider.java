@@ -3,57 +3,54 @@ package tools;
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
-import model.Couleur;
+import model.Color;
 
 /**
- * @author francoise.perrin
- * Inspiration Jacques SARAYDARYAN, Adrien GUENARD
- * 
- * Cette classe s'appuie sur ChessPieceImage
- * pour fournir les noms des images des piﾃｨces
- * qui sont utilisﾃｩes dans l'IHM 
- *  
+ * @author Loic and Lucas
+ * <p>
+ * use ChessPieceImqge to provide the name of the piece images that are
+ * used in the HMI
  */
 public class ChessImageProvider {
 
 	private static Map<String, String> mapImage;
 
-	static {		
+	static {
 		mapImage = new HashMap<String, String>();
 		for (int i = 0; i < ChessPieceImage.values().length; i++) {
 			mapImage.put(ChessPieceImage.values()[i].nom, ChessPieceImage.values()[i].imageFile);
-		}	
+		}
 	}
 
 	/**
-	 * private pour ne pas instancier d'objets
+	 * Is private to avoid instantiation
 	 */
 	private ChessImageProvider() {
 
-	}	
+	}
 
 	/**
 	 * @param pieceType
-	 * @param pieceCouleur
-	 * @return nom fichier contenant image de la pi�ｿｽce
+	 * @param pieceColor
+	 * @return file name of the piece image
 	 */
-	public static String getImageFile(String pieceType, Couleur pieceCouleur){
+	public static String getImageFile(String pieceType, Color pieceColor) {
 		String ret, key, value;
 		ret = null;
-		key = pieceType + pieceCouleur.name();
+		key = pieceType + pieceColor.name();
 		value = mapImage.get(key);
-		File g=new File("");
-		ret  = g.getAbsolutePath()+ "/images/" + value;
+		File g = new File("");
+		ret = g.getAbsolutePath() + "/images/" + value;
 
-		return ret;		
+		return ret;
 	}
 
 	/**
-	 * Test unitaires
+	 * Unit test
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println(ChessImageProvider.getImageFile("Cavalier", Couleur.BLANC));
+		System.out.println(ChessImageProvider.getImageFile("Knight", Color.WHITE));
 	}
-
 }

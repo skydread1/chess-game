@@ -1,47 +1,43 @@
 package model;
 
-
 /**
- * @author francoise.perrin
- * 
- * Cette interface défini le comportement attendu 
- * des jeux de plateaux
- *
+ * @author Loic and Lucas
+ * <p>
+ * Interface representing a generic board game behavior
  */
-public interface BoardGames {	
+public interface BoardGames {
 
 	/**
-	 * Permet de deplacer une piece connaissant ses coordonnees initiales 
-	 * vers ses coordonnees finales 	 *  
+	 * Given the initial coordinates, move the piece to the final coordinates
+	 * 
 	 * @param xInit
 	 * @param yInit
 	 * @param xFinal
 	 * @param yFinal
-	 * @return OK si deplacement OK	 
+	 * @return true once the move is done
 	 */
-	public boolean move (int xInit, int yInit, int xFinal, int yFinal); 
-
+	public boolean move(int xInit, int yInit, int xFinal, int yFinal);
 
 	/**
-	 * @return true si c'est la fin du jeu
+	 * @return true if game has ended
 	 */
 	public boolean isEnd();
 
 	/**
-	 * @return un message sur l'état du jeu
+	 * @return string representation of the game
 	 */
 	public String getMessage();
 
 	/**
-	 * @return la couleur du joueur courant
+	 * @return the current player color
 	 */
-	public Couleur getColorCurrentPlayer();
+	public Color getColorCurrentPlayer();
 
 	/**
 	 * @param x
 	 * @param y
-	 * @return la couleur de la pièce sélectionnée
+	 * @return the current piece color
 	 */
-	public Couleur getPieceColor(int x, int y);
+	public Color getPieceColor(int x, int y);
 
 }

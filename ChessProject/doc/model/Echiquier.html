@@ -49,8 +49,8 @@ var activeTableTab = "activeTableTab";
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../model/Couleur.html" title="enum in model"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../model/Fou.html" title="class in model"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../model/Color.html" title="enum in model"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../model/Bishop.html" title="class in model"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../index.html?model/Echiquier.html" target="_top">Frames</a></li>
@@ -119,7 +119,7 @@ implements <a href="../model/BoardGames.html" title="interface in model">BoardGa
 <dl>
 <dt><span class="simpleTagLabel">Author:</span></dt>
 <dd>lucas/loïc
- Classe echiquier</dd>
+ Classe chessboard</dd>
 </dl>
 </li>
 </ul>
@@ -157,7 +157,7 @@ implements <a href="../model/BoardGames.html" title="interface in model">BoardGa
 <th class="colLast" scope="col">Method and Description</th>
 </tr>
 <tr id="i0" class="altColor">
-<td class="colFirst"><code><a href="../model/Couleur.html" title="enum in model">Couleur</a></code></td>
+<td class="colFirst"><code><a href="../model/Color.html" title="enum in model">Color</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../model/Echiquier.html#getColorCurrentPlayer--">getColorCurrentPlayer</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i1" class="rowColor">
@@ -165,7 +165,7 @@ implements <a href="../model/BoardGames.html" title="interface in model">BoardGa
 <td class="colLast"><code><span class="memberNameLink"><a href="../model/Echiquier.html#getMessage--">getMessage</a></span>()</code>&nbsp;</td>
 </tr>
 <tr id="i2" class="altColor">
-<td class="colFirst"><code><a href="../model/Couleur.html" title="enum in model">Couleur</a></code></td>
+<td class="colFirst"><code><a href="../model/Color.html" title="enum in model">Color</a></code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../model/Echiquier.html#getPieceColor-int-int-">getPieceColor</a></span>(int&nbsp;x,
              int&nbsp;y)</code>&nbsp;</td>
 </tr>
@@ -204,7 +204,7 @@ implements <a href="../model/BoardGames.html" title="interface in model">BoardGa
 <tr id="i8" class="altColor">
 <td class="colFirst"><code>void</code></td>
 <td class="colLast"><code><span class="memberNameLink"><a href="../model/Echiquier.html#switchJoueur--">switchJoueur</a></span>()</code>
-<div class="block">Change le joueur courant lorsqu'un joueur termine son tour</div>
+<div class="block">Change le joueur current lorsqu'un joueur termine son rock</div>
 </td>
 </tr>
 <tr id="i9" class="rowColor">
@@ -259,7 +259,7 @@ implements <a href="../model/BoardGames.html" title="interface in model">BoardGa
 <pre>public&nbsp;java.util.List&lt;<a href="../model/PieceIHM.html" title="class in model">PieceIHM</a>&gt;&nbsp;getPiecesIHM()</pre>
 <dl>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>liste de pièces IHM contenant toutes les pieces de l'echiquier (courantes et non courantes)</dd>
+<dd>liste de pièces IHM contenant toutes les pieces de l'chessboard (currentes et non currentes)</dd>
 </dl>
 </li>
 </ul>
@@ -270,7 +270,7 @@ implements <a href="../model/BoardGames.html" title="interface in model">BoardGa
 <li class="blockList">
 <h4>switchJoueur</h4>
 <pre>public&nbsp;void&nbsp;switchJoueur()</pre>
-<div class="block">Change le joueur courant lorsqu'un joueur termine son tour</div>
+<div class="block">Change le joueur current lorsqu'un joueur termine son rock</div>
 </li>
 </ul>
 <a name="isPieceInBetween-int-int-int-int-">
@@ -355,12 +355,12 @@ implements <a href="../model/BoardGames.html" title="interface in model">BoardGa
 <ul class="blockList">
 <li class="blockList">
 <h4>getColorCurrentPlayer</h4>
-<pre>public&nbsp;<a href="../model/Couleur.html" title="enum in model">Couleur</a>&nbsp;getColorCurrentPlayer()</pre>
+<pre>public&nbsp;<a href="../model/Color.html" title="enum in model">Color</a>&nbsp;getColorCurrentPlayer()</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../model/BoardGames.html#getColorCurrentPlayer--">getColorCurrentPlayer</a></code>&nbsp;in interface&nbsp;<code><a href="../model/BoardGames.html" title="interface in model">BoardGames</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>la couleur du joueur courant</dd>
+<dd>la color du joueur current</dd>
 </dl>
 </li>
 </ul>
@@ -370,13 +370,13 @@ implements <a href="../model/BoardGames.html" title="interface in model">BoardGa
 <ul class="blockList">
 <li class="blockList">
 <h4>getPieceColor</h4>
-<pre>public&nbsp;<a href="../model/Couleur.html" title="enum in model">Couleur</a>&nbsp;getPieceColor(int&nbsp;x,
+<pre>public&nbsp;<a href="../model/Color.html" title="enum in model">Color</a>&nbsp;getPieceColor(int&nbsp;x,
                              int&nbsp;y)</pre>
 <dl>
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../model/BoardGames.html#getPieceColor-int-int-">getPieceColor</a></code>&nbsp;in interface&nbsp;<code><a href="../model/BoardGames.html" title="interface in model">BoardGames</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>la couleur de la pièce sélectionnée</dd>
+<dd>la color de la pièce sélectionnée</dd>
 </dl>
 </li>
 </ul>
@@ -391,7 +391,7 @@ implements <a href="../model/BoardGames.html" title="interface in model">BoardGa
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../model/BoardGames.html#getMessage--">getMessage</a></code>&nbsp;in interface&nbsp;<code><a href="../model/BoardGames.html" title="interface in model">BoardGames</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>un message sur l'état du jeu</dd>
+<dd>un message sur l'état du game</dd>
 </dl>
 </li>
 </ul>
@@ -406,7 +406,7 @@ implements <a href="../model/BoardGames.html" title="interface in model">BoardGa
 <dt><span class="overrideSpecifyLabel">Specified by:</span></dt>
 <dd><code><a href="../model/BoardGames.html#isEnd--">isEnd</a></code>&nbsp;in interface&nbsp;<code><a href="../model/BoardGames.html" title="interface in model">BoardGames</a></code></dd>
 <dt><span class="returnLabel">Returns:</span></dt>
-<dd>true si c'est la fin du jeu</dd>
+<dd>true si c'est la fin du game</dd>
 </dl>
 </li>
 </ul>
@@ -438,8 +438,8 @@ implements <a href="../model/BoardGames.html" title="interface in model">BoardGa
 </div>
 <div class="subNav">
 <ul class="navList">
-<li><a href="../model/Couleur.html" title="enum in model"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
-<li><a href="../model/Fou.html" title="class in model"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
+<li><a href="../model/Color.html" title="enum in model"><span class="typeNameLink">Prev&nbsp;Class</span></a></li>
+<li><a href="../model/Bishop.html" title="class in model"><span class="typeNameLink">Next&nbsp;Class</span></a></li>
 </ul>
 <ul class="navList">
 <li><a href="../index.html?model/Echiquier.html" target="_top">Frames</a></li>
