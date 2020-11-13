@@ -8,11 +8,9 @@ import model.Color;
 import model.Pieces;
 
 /**
- * @author francoise.perrin
- * Inspiration Jacques SARAYDARYAN, Adrien GUENARD
- * 
+ * @author Loic and Lucas
+ * <p>
  * Build the HMI pieces given the color.
- *
  */
 public class ChessPiecesFactory {
 
@@ -27,21 +25,21 @@ public class ChessPiecesFactory {
 	 * @param pieceColor
 	 * @return CHess game piece list
 	 */
-	public static List<Pieces> newPieces(Color pieceColor){
+	public static List<Pieces> newPieces(Color pieceColor) {
 
 		List<Pieces> pieces = null;
 		pieces = new LinkedList<Pieces>();
-		//String initColor = (Color.WHITE == pieceColor ? "B_" : "N_" );
+		// String initColor = (Color.WHITE == pieceColor ? "B_" : "N_" );
 
-		if (pieceColor != null){
+		if (pieceColor != null) {
 			for (int i = 0; i < ChessPiecePos.values().length; i++) {
 
 				if (pieceColor.equals(ChessPiecePos.values()[i].color)) {
 					for (int j = 0; j < (ChessPiecePos.values()[i].coords).length; j++) {
-						String className = "model." + ChessPiecePos.values()[i].nom;	// attention au chemin
+						String className = "model." + ChessPiecePos.values()[i].nom; // mind the path format
 						Coord pieceCoord = ChessPiecePos.values()[i].coords[j];
-						pieces.add((Pieces) Introspection.newInstance (className,
-								new Object[] {pieceColor, pieceCoord}));
+						pieces.add(
+								(Pieces) Introspection.newInstance(className, new Object[] { pieceColor, pieceCoord }));
 					}
 				}
 			}
@@ -51,6 +49,7 @@ public class ChessPiecesFactory {
 
 	/**
 	 * Unit Tests
+	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {

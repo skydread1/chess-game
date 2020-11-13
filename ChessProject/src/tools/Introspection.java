@@ -3,11 +3,10 @@ package tools;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
-
 /**
- * @author francoise.perrin - 
+ * @author francoise.perrin
+ * <p>
  * Inspiration : http://www.jmdoudoux.fr/java/dej/chap-introspection.htm
- * 
  */
 public class Introspection {
 
@@ -21,61 +20,56 @@ public class Introspection {
 	/**
 	 * method invocation knowing its name on an object o given the right parameters
 	 * 
-	 * @param o - the object in which the method is acting
-	 * @param args - method parameters list
+	 * @param o          - the object in which the method is acting
+	 * @param args       - method parameters list
 	 * @param nomMethode - method name
 	 * @return invoked method
 	 * @throws Exception
 	 */
-	public static Object invoke(Object o, Object[] args, String nomMethode ) throws Exception	{
+	public static Object invoke(Object o, Object[] args, String nomMethode) throws Exception {
 		Class<? extends Object>[] paramTypes = null;
-		if(args != null){
+		if (args != null) {
 			paramTypes = new Class<?>[args.length];
-			for(int i=0;i<args.length;++i)	{
+			for (int i = 0; i < args.length; ++i) {
 				paramTypes[i] = args[i].getClass();
 			}
 		}
-		Method m = o.getClass().getMethod(nomMethode,paramTypes);
-		return m.invoke(o,args);
+		Method m = o.getClass().getMethod(nomMethode, paramTypes);
+		return m.invoke(o, args);
 	}
 
-
 	/**
-	 * Object creation knowing the class name
-	 * Uses a no-argument constructor
+	 * Object creation knowing the class name Uses a no-argument constructor
 	 * 
 	 * @param className
 	 * @return the newly created object
 	 */
 	public static Object newInstance(String className) {
 		Object o = null;
-		try	    {
-			o = Class.forName (className).newInstance ();
-		}
-		catch (ClassNotFoundException e)	    {
+		try {
+			o = Class.forName(className).newInstance();
+		} catch (ClassNotFoundException e) {
 			// the class does not exist
 			e.printStackTrace();
-		}
-		catch (InstantiationException e)	    {
-			// the class is abstract or an interface or without constructor accessible without parameters
+		} catch (InstantiationException e) {
+			// the class is abstract or an interface or without constructor accessible
+			// without parameters
 			e.printStackTrace();
-		}
-		catch (IllegalAccessException e)	    {
+		} catch (IllegalAccessException e) {
 			// the class is not accessible
 			e.printStackTrace();
 		}
 		return o;
 	}
 
-
 	/**
 	 * construction from the class name and the constructor parameters
 	 * 
 	 * @param className
-	 * @param args - constructor arguments list
+	 * @param args      - constructor arguments list
 	 * @return the newly created object
 	 */
-	public static Object newInstance(String className, Object[] args)	 {
+	public static Object newInstance(String className, Object[] args) {
 		Object o = null;
 
 		try {
@@ -83,43 +77,36 @@ public class Introspection {
 			Class<?> classe = Class.forName(className);
 			// fetch the constructor corresponding to the args
 			Class<?>[] paramTypes = null;
-			if(args != null){
+			if (args != null) {
 				paramTypes = new Class[args.length];
-				for(int i=0;i<args.length;++i)	{
+				for (int i = 0; i < args.length; ++i) {
 					paramTypes[i] = args[i].getClass();
 				}
 			}
 			Constructor<?> ct = classe.getConstructor(paramTypes);
-			// instantiates the new object with the constructor and the appropriate parameters
-			o =  ct.newInstance (args);		
-		}
-		catch (ClassNotFoundException e)		{
+			// instantiates the new object with the constructor and the appropriate
+			// parameters
+			o = ct.newInstance(args);
+		} catch (ClassNotFoundException e) {
 			// the class does not exist
 			e.printStackTrace();
-		}
-		catch (NoSuchMethodException e)		{
+		} catch (NoSuchMethodException e) {
 			// the class does not have the constructor
 			e.printStackTrace();
-		}
-		catch (InstantiationException e)		{
+		} catch (InstantiationException e) {
 			// the class is abstract or an interface
 			e.printStackTrace();
-		}
-		catch (IllegalAccessException e)		{
+		} catch (IllegalAccessException e) {
 			// the class is not accessible
 			e.printStackTrace();
-		}
-		catch (java.lang.reflect.InvocationTargetException e)		{
+		} catch (java.lang.reflect.InvocationTargetException e) {
 			// Raises exception is the invoked constructor raises an exception
 			e.printStackTrace();
-		}
-		catch (IllegalArgumentException e)		{
-			// Wrong types of parameters 			
+		} catch (IllegalArgumentException e) {
+			// Wrong types of parameters
 			e.printStackTrace();
 		}
 		return o;
 	}
-
-
 
 }
