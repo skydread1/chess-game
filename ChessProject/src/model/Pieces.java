@@ -36,7 +36,7 @@ public interface Pieces {
 	boolean move(int xFinal, int yFinal);
 
 	/**
-	 * @return true if the capture is done
+	 * @return true once the capture is done
 	 */
 	boolean capture();
 

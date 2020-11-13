@@ -19,12 +19,12 @@ public class ChessGameControler extends AbstractChessGameControler {
 	 * 
 	 * @param chessGame
 	 */
-	public ChessGameControler (ChessGameObs chessGame) {
+	public ChessGameControler(ChessGameObs chessGame) {
 		super(chessGame);
 	}
 
 	@Override
-	public boolean isPlayerOK (Coord initCoord) {
+	public boolean isPlayerOK(Coord initCoord) {
 		boolean ret = false;
 		Color colorPiece = this.chessGame.getPieceColor(initCoord.x, initCoord.y);
 		Color colorCurrentGame = this.chessGame.getColorCurrentPlayer();
@@ -36,6 +36,6 @@ public class ChessGameControler extends AbstractChessGameControler {
 	}
 
 	@Override
-	protected void endMove (Coord initCoord, Coord finalCoord, String promotionType) {
+	protected void endMove(Coord initCoord, Coord finalCoord, String promotionType) {
 	}
 }

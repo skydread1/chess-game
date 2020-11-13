@@ -162,7 +162,8 @@ public class Game extends java.lang.Object {
 					}
 				}
 			}
-			// piece type does not exist in list so create a HMI piece and add it to the list
+			// piece type does not exist in list so create a HMI piece and add it to the
+			// list
 			if (!existe) {
 				if (piece.getX() != -1) {
 					newPieceIHM = new PieceHMI(piece.getClass().getSimpleName(), piece.getColor());
@@ -222,7 +223,7 @@ public class Game extends java.lang.Object {
 	 * @param xFinal
 	 * @param yFinal
 	 * @param type
-	 * @return true if the promotion was correctly done
+	 * @return true once the promotion is done
 	 */
 	public boolean pawnPromotion(int xFinal, int yFinal, java.lang.String type) {
 		boolean ret = false;

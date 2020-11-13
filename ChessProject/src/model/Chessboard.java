@@ -7,7 +7,7 @@ import java.util.List;
  * <p>
  * Chess board
  */
-public class ChessBoard extends java.lang.Object implements BoardGames {
+public class Chessboard extends java.lang.Object implements BoardGames {
 
 	private Game game_WHITE;
 	private Game game_BLACK;
@@ -18,7 +18,7 @@ public class ChessBoard extends java.lang.Object implements BoardGames {
 	/**
 	 * No-arguments constructor
 	 */
-	public ChessBoard() {
+	public Chessboard() {
 		this.game_WHITE = new Game(Color.WHITE);
 		this.game_BLACK = new Game(Color.BLACK);
 		this.game_current = this.game_WHITE;

@@ -5,84 +5,82 @@ import java.util.Observer;
 
 import model.BoardGames;
 import model.Color;
-import model.ChessBoard;
+import model.Chessboard;
 
 /**
  * @author Loic and Lucas
- * 
- *         Cette classe est fortement couplﾃｩe ﾃ� un Echiquier qu'elle crﾃｩe
- *         Elle le rend Observable et en simplifie l'interface (DP Proxy,
- *         Facade, Observer)
+ * <p>
+ * Heavily connected to a Chess Board it creates It makes it observable
+ * and simplify the interface (DP Proxy, Facade, Observer)
  *
  */
 public class ChessGameObs extends Observable implements BoardGames {
 
-	private ChessBoard echiquier;
+	private Chessboard chessboard;
 
 	/**
-	 * Cree une instance de la classe Echiquier et notifie ses observateurs
+	 * Instantiate a chess board and notify the observers
 	 */
 	public ChessGameObs() {
 		super();
-		this.echiquier = new ChessBoard();
-		this.notifyObservers(echiquier.getPiecesHMI());
+		this.chessboard = new Chessboard();
+		this.notifyObservers(chessboard.getPiecesHMI());
 	}
 
 	/**
-	 * @return l'attribut l'echiquier
+	 * @return the chessboard
 	 */
-	public ChessBoard getEchiquier() {
-		return this.echiquier;
+	public Chessboard getEchiquier() {
+		return this.chessboard;
 	}
 
 	@Override
 	public String toString() {
 		String st = "";
-		st += "\n" + echiquier.getMessage() + "\n";
-		st = echiquier.toString();
+		st += "\n" + chessboard.getMessage() + "\n";
+		st = chessboard.toString();
 		return st;
 	}
 
 	/**
-	 * Permet de deplacer une piece connaissant ses coordonnees initiales vers ses
-	 * coordonnees finales si le deplacement est "legal". Si deplacement OK, permet
-	 * l'alternance des joueurs.
+	 * allow the move of a piece from initial to final coordinates if the move is ok
+	 * also switch player
 	 * 
 	 * @param xInit
 	 * @param yInit
 	 * @param xFinal
 	 * @param yFinal
-	 * @return OK si deplacement OK si OK, permet l'alternance des joueurs
+	 * @return true once the move is one and player is switched
 	 */
 	public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
 		boolean ret = false;
 
-		ret = echiquier.isMoveOk(xInit, yInit, xFinal, yFinal);
+		ret = chessboard.isMoveOk(xInit, yInit, xFinal, yFinal);
 		if (ret) {
-			ret = echiquier.move(xInit, yInit, xFinal, yFinal);
+			ret = chessboard.move(xInit, yInit, xFinal, yFinal);
 		}
 		if (ret) {
-			echiquier.switchJoueur();
+			chessboard.switchJoueur();
 		}
 
-		this.notifyObservers(this.echiquier.getPiecesHMI());
+		this.notifyObservers(this.chessboard.getPiecesHMI());
 		return ret;
 	}
 
 	public boolean isEnd() {
-		return echiquier.isEnd();
+		return chessboard.isEnd();
 	}
 
 	public String getMessage() {
-		return echiquier.getMessage();
+		return chessboard.getMessage();
 	}
 
 	public Color getColorCurrentPlayer() {
-		return echiquier.getColorCurrentPlayer();
+		return chessboard.getColorCurrentPlayer();
 	}
 
 	public Color getPieceColor(int x, int y) {
-		return echiquier.getPieceColor(x, y);
+		return chessboard.getPieceColor(x, y);
 	}
 
 	@Override
@@ -94,6 +92,6 @@ public class ChessGameObs extends Observable implements BoardGames {
 	@Override
 	public void addObserver(Observer o) {
 		super.addObserver(o);
-		this.notifyObservers(echiquier.getPiecesHMI());
+		this.notifyObservers(chessboard.getPiecesHMI());
 	}
 }

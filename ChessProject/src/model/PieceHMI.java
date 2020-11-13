@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author Loic and Lucas
  * <p>
- * Pieces information on the View that are meant to be use by HMI 
+ * Pieces information on the View that are meant to be use by HMI
  */
 public class PieceHMI {
 

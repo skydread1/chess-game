@@ -33,13 +33,13 @@ public interface ChessGameControlers {
 	 * @param initCoord
 	 * @return true if the player is valid
 	 */
-	public boolean isPlayerOK (Coord initCoord);
+	public boolean isPlayerOK(Coord initCoord);
 
 	/**
 	 * @param x
 	 * @param y
 	 * @return The coordinates of the potential moves
 	 */
-	public List<Coord> whereCanYouGo (int x, int y);
+	public List<Coord> whereCanYouGo(int x, int y);
 
 }
