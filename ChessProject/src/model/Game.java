@@ -12,7 +12,7 @@ import tools.ChessPiecesFactory;
 public class Game extends java.lang.Object {
 	private List<Pieces> pieces = null;
 	private Color color;
-	
+
 	/**
 	 * @param color
 	 */
@@ -251,35 +251,44 @@ public class Game extends java.lang.Object {
 	 * @param yInit  of the king
 	 * @param xFinal of the king
 	 * @param yFinal of the king
+	 * @return true once the castling move is done
 	 * 
 	 */
-	public void castle(int xInit, int yInit, int xFinal, int yFinal) {
-		// move the king
-		move(xInit, yInit, xFinal, yFinal);
+	public boolean castle(int xInit, int yInit, int xFinal, int yFinal) {
+		boolean ret = false;
+		if (this.isCastlingPossible(xInit, yInit, xFinal, yFinal)) {
+			// move the king
+			move(xInit, yInit, xFinal, yFinal);
 
-		// move the rock
-		// white
-		if (yInit == 7) {
-			// right
-			if (xFinal == 6) {
-				move(7, 7, 5, 7);
+			// move the rock
+			// white
+			if (yInit == 7) {
+				// right
+				if (xFinal == 6) {
+					move(7, 7, 5, 7);
+					ret = true;
+				}
+				// left
+				else {
+					move(0, 7, 3, 7);
+					ret = true;
+				}
 			}
-			// left
+			// black
 			else {
-				move(0, 7, 2, 7);
+				// right
+				if (xFinal == 6) {
+					move(7, 0, 5, 0);
+					ret = true;
+				}
+				// left
+				else {
+					move(0, 0, 3, 0);
+					ret = true;
+				}
 			}
 		}
-		// black
-		else {
-			// right
-			if (xFinal == 6) {
-				move(7, 0, 5, 0);
-			}
-			// left
-			else {
-				move(0, 0, 2, 0);
-			}
-		}
+		return ret;
 	}
 
 	/**
@@ -405,8 +414,7 @@ public class Game extends java.lang.Object {
 		whiteGame.move(5, 7, 2, 4); // move out the right bishop
 		whiteGame.move(6, 7, 7, 5); // move out right knight
 		System.out.println(whiteGame.isCastlingPossible(4, 7, 6, 7));
-
-		whiteGame.castle(4, 7, 6, 7);
+		System.out.println(whiteGame.castle(4, 7, 6, 7));
 		System.out.println(whiteGame.findPiece(6, 7).getName().equals("King"));
 
 		Game blackGame = new Game(Color.BLACK);
@@ -415,8 +423,7 @@ public class Game extends java.lang.Object {
 		blackGame.move(5, 0, 2, 3); // move out the right bishop
 		blackGame.move(6, 0, 7, 2); // move out right knight
 		System.out.println(blackGame.isCastlingPossible(4, 0, 6, 0));
-
-		blackGame.castle(4, 0, 6, 0);
+		System.out.println(blackGame.castle(4, 0, 6, 0));
 		System.out.println(blackGame.findPiece(6, 0).getName().equals("King"));
 	}
 }
