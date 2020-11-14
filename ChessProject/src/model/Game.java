@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import tools.ChessPiecesFactory;
+import tools.ChessSinglePieceFactory;
 
 /**
  * @author Loic and Lucas
@@ -55,11 +56,12 @@ public class Game extends java.lang.Object {
 	/**
 	 * move a piece on the chess board
 	 * <p>
+	 * 
 	 * @param xInit
 	 * @param yInit
 	 * @param xFinal
 	 * @param yFinal
-	 * <p>
+	 *               <p>
 	 * @return true once the move is done
 	 */
 	public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
@@ -76,7 +78,7 @@ public class Game extends java.lang.Object {
 	 * 
 	 * @param xCapture
 	 * @param yCapture
-	 * <p>
+	 *                 <p>
 	 * @return true if the capture is possible
 	 */
 	public boolean isCapturePossible(int xCapture, int yCapture) {
@@ -111,7 +113,7 @@ public class Game extends java.lang.Object {
 	/**
 	 * @param x
 	 * @param y
-	 * <p>
+	 *          <p>
 	 * @return the color of the piece at the given coordinates
 	 */
 	public Color getPieceColor(int x, int y) {
@@ -153,7 +155,8 @@ public class Game extends java.lang.Object {
 		for (Pieces piece : pieces) {
 			boolean existe = false;
 
-			// piece type exists in list so add the coordinates of the new piece of this type
+			// piece type exists in list so add the coordinates of the new piece of this
+			// type
 			for (PieceHMI pieceIHM : list) {
 				if ((pieceIHM.getTypePiece()).equals(piece.getClass().getSimpleName())) {
 					existe = true;
@@ -173,6 +176,68 @@ public class Game extends java.lang.Object {
 			}
 		}
 		return list;
+	}
+
+	/**
+	 * The rule of castling :
+	 * @see <a href="https://www.youtube.com/watch?v=4jXQyGaeUV8&ab_channel=Chess.com">How to Castle</a>
+	 * @param xInit
+	 * @param yInit
+	 * @param xFinal
+	 * @param yFinal
+	 * @return true if the castling is possible given the king new coordinates
+	 * TODO: The king and the switching Rock should not have moved the entire game
+	 * The steps between the King and the Rock should not be in check
+	 */
+	public boolean isCastlingPossible(int xInit, int yInit, int xFinal, int yFinal) {
+		boolean ret = false;
+		Color kingColor = getColor();
+		// King is White and at starting position.
+		if (kingColor == Color.WHITE && xInit == 4 && yInit == 7) {
+			// King castling with right Rock
+			if (xFinal == 6 && yFinal == 7) {
+				// No pieces between King and Rock
+				if (!isPieceHere(5, 7) && !isPieceHere(6, 7) && isPieceHere(7, 7)) {
+					if (findPiece(7, 7).getName().equals("Rock") && findPiece(7, 7).getColor() == kingColor) {
+						ret = true;
+					}
+				}
+			}
+
+			// King castling with left Rock
+			if (xFinal == 2 && yFinal == 7) {
+				// No pieces between King and Rock
+				if (isPieceHere(0, 7) && !isPieceHere(1, 7) && !isPieceHere(2, 7) && !isPieceHere(3, 7)) {
+					if (findPiece(0, 7).getName().equals("Rock") && findPiece(0, 7).getColor() == kingColor) {
+						ret = true;
+					}
+				}
+			}
+		}
+		
+		// King is Black and at starting position.
+				if (kingColor == Color.BLACK && xInit == 4 && yInit == 0) {
+					// King castling with right Rock
+					if (xFinal == 6 && yFinal == 0) {
+						// No pieces between King and Rock
+						if (!isPieceHere(5, 0) && !isPieceHere(6, 0) && isPieceHere(7, 0)) {
+							if (findPiece(7, 0).getName().equals("Rock") && findPiece(7, 0).getColor() == kingColor) {
+								ret = true;
+							}
+						}
+					}
+
+					// King castling with left Rock
+					if (xFinal == 2 && yFinal == 0) {
+						// No pieces between King and Rock
+						if (isPieceHere(0, 0) && !isPieceHere(1, 0) && !isPieceHere(2, 0) && !isPieceHere(3, 0)) {
+							if (findPiece(0, 0).getName().equals("Rock") && findPiece(0, 0).getColor() == kingColor) {
+								ret = true;
+							}
+						}
+					}
+				}
+		return ret;
 	}
 
 	/**
@@ -289,5 +354,52 @@ public class Game extends java.lang.Object {
 		}
 		return ret;
 	}
-
+	
+	/**
+	 * Unit tests
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		System.out.println("Unit test for Castling check - all prints should return true");
+		Game whiteGame = new Game(Color.WHITE);
+		System.out.println(whiteGame.isCastlingPossible(4, 7, 6, 7) == false);
+		
+		whiteGame.move(4, 6, 4, 5); // move pawn up
+		whiteGame.move(5, 7, 2, 4); // move out the right bishop
+		whiteGame.move(6, 7, 7, 5); // move out right knight
+		
+		System.out.println(whiteGame.isCastlingPossible(4, 7, 6, 7));
+		
+		Game whiteGame2 = new Game(Color.WHITE);
+		System.out.println(whiteGame2.isCastlingPossible(4, 7, 2, 7) == false);
+		
+		whiteGame2.move(3, 6, 3, 5); // move pawn up
+		whiteGame2.move(2, 7, 5, 4); // move out the left bishop
+		whiteGame2.move(3, 7, 3, 6); // move out the queen
+		whiteGame2.move(1, 7, 0, 5); // move out left knight
+		
+		System.out.println(whiteGame2.isCastlingPossible(4, 7, 2, 7));
+		
+		Game blackGame = new Game(Color.BLACK);
+		System.out.println(blackGame.isCastlingPossible(4, 0, 6, 0) == false);
+		
+		blackGame.move(4, 1, 4, 2); // move pawn up
+		blackGame.move(5, 0, 2, 3); // move out the right bishop
+		blackGame.move(6, 0, 7, 2); // move out right knight
+		
+		System.out.println(blackGame.isCastlingPossible(4, 0, 6, 0));
+		
+		Game blackGame2 = new Game(Color.BLACK);
+		System.out.println(blackGame2.isCastlingPossible(4, 0, 2, 0) == false);
+		
+		blackGame2.move(3, 1, 3, 2); // move pawn up
+		blackGame2.move(2, 0, 5, 3); // move out the left bishop
+		blackGame2.move(3, 0, 3, 1); // move out the queen
+		blackGame2.move(1, 0, 0, 2); // move out left knight
+		
+		System.out.println(blackGame2.isCastlingPossible(4, 0, 2, 0));
+	}
 }
+
+
