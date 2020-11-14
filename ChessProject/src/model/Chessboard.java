@@ -195,13 +195,16 @@ public class Chessboard extends java.lang.Object implements BoardGames {
 					// cannot capture same color piece
 					if (this.game_current.isPieceHere(xFinal, yFinal)) {
 						ret = false;
-						// Castling case
-					} else if (this.game_current.isCastlingPossible(xInit, yInit, xFinal, yFinal)) {
+					
+					}
+					// Castling case
+					else if (this.game_current.isCastlingPossible(xInit, yInit, xFinal, yFinal)) {
 						ret = true;
-						// classic move
-					} else {
+					}
+					// classic move
+					else {
 						ret = game_current.isMoveOk(xInit, yInit, xFinal, yFinal);
-					} 
+					}
 				}
 				// piece in between case
 				if (isPieceInBetween(xInit, yInit, xFinal, yFinal)) {
@@ -224,11 +227,13 @@ public class Chessboard extends java.lang.Object implements BoardGames {
 		if (this.isMoveOk(xInit, yInit, xFinal, yFinal)) {
 			// capture case
 			this.game_non_current.capture(xFinal, yFinal);
+			
 			// castling move
 			if (this.game_current.isCastlingPossible(xInit, yInit, xFinal, yFinal)) {
 				ret = this.game_current.castle(xInit, yInit, xFinal, yFinal);
-				// classic move
-			} else {
+			}
+			// classic move
+			else {
 				ret = (this.game_current.move(xInit, yInit, xFinal, yFinal));
 			}
 		} else {

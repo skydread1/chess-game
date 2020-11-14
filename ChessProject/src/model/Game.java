@@ -60,7 +60,7 @@ public class Game extends java.lang.Object {
 	 * @param yInit
 	 * @param xFinal
 	 * @param yFinal
-	 *               <p>
+	 * <p>
 	 * @return true once the move is done
 	 */
 	public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
@@ -77,7 +77,7 @@ public class Game extends java.lang.Object {
 	 * 
 	 * @param xCapture
 	 * @param yCapture
-	 *                 <p>
+	 * <p>
 	 * @return true if the capture is possible
 	 */
 	public boolean isCapturePossible(int xCapture, int yCapture) {
@@ -112,7 +112,7 @@ public class Game extends java.lang.Object {
 	/**
 	 * @param x
 	 * @param y
-	 *          <p>
+	 * <p>
 	 * @return the color of the piece at the given coordinates
 	 */
 	public Color getPieceColor(int x, int y) {
@@ -154,8 +154,7 @@ public class Game extends java.lang.Object {
 		for (Pieces piece : pieces) {
 			boolean existe = false;
 
-			// piece type exists in list so add the coordinates of the new piece of this
-			// type
+			// piece type exists in list so add the coordinates of the new piece of this type
 			for (PieceHMI pieceIHM : list) {
 				if ((pieceIHM.getTypePiece()).equals(piece.getClass().getSimpleName())) {
 					existe = true;
@@ -164,8 +163,7 @@ public class Game extends java.lang.Object {
 					}
 				}
 			}
-			// piece type does not exist in list so create a HMI piece and add it to the
-			// list
+			// piece type does not exist in list so create a HMI piece and add it to the list
 			if (!existe) {
 				if (piece.getX() != -1) {
 					newPieceIHM = new PieceHMI(piece.getClass().getSimpleName(), piece.getColor());
@@ -180,18 +178,15 @@ public class Game extends java.lang.Object {
 	/**
 	 * The rule of castling :
 	 * 
-	 * @see <a href=
-	 *      "https://www.youtube.com/watch?v=4jXQyGaeUV8&ab_channel=Chess.com">How
-	 *      to Castle</a>
+	 * @see <a href="https://www.youtube.com/watch?v=4jXQyGaeUV8&ab_channel=Chess.com">How to Castle</a>
 	 * @param xInit
 	 * @param yInit
 	 * @param xFinal
 	 * @param yFinal
 	 * @return true if the castling is possible given the king new coordinates
 	 * 
-	 *         TODO: the king and the switching Rock should not have moved the
-	 *         entire game the steps between the King and the Rock should not be in
-	 *         check
+	 * TODO: the king and the switching Rock should not have moved the entire game
+	 * 		 the steps between the King and the Rock should not be in check
 	 */
 	public boolean isCastlingPossible(int xInit, int yInit, int xFinal, int yFinal) {
 		boolean ret = false;
