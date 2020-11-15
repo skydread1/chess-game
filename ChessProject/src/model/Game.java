@@ -283,6 +283,7 @@ public class Game extends java.lang.Object {
 				}
 			}
 		}
+		System.out.println("CASTLING");
 		return ret;
 	}
 
