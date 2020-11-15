@@ -45,8 +45,8 @@ public class Game extends java.lang.Object {
 		boolean ret = false;
 
 		if (isPieceHere(xInit, yInit)) {
-			Pieces pieces = findPiece(xInit, yInit);
-			ret = pieces.isMoveOk(xFinal, yFinal);
+			Pieces piece = findPiece(xInit, yInit);
+			ret = piece.isMoveOk(xFinal, yFinal);
 		}
 
 		return ret;
@@ -65,8 +65,8 @@ public class Game extends java.lang.Object {
 	 */
 	public boolean move(int xInit, int yInit, int xFinal, int yFinal) {
 		boolean ret = false;
-		Pieces pieces = findPiece(xInit, yInit);
-		ret = pieces.move(xFinal, yFinal);
+		Pieces piece = findPiece(xInit, yInit);
+		ret = piece.move(xFinal, yFinal);
 
 		return ret;
 	}
@@ -163,8 +163,7 @@ public class Game extends java.lang.Object {
 					}
 				}
 			}
-			// piece type does not exist in list so create a HMI piece and add it to the
-			// list
+			// piece type does not exist in list so create a HMI piece and add it to the list
 			if (!existe) {
 				if (piece.getX() != -1) {
 					newPieceIHM = new PieceHMI(piece.getClass().getSimpleName(), piece.getColor());
@@ -187,7 +186,7 @@ public class Game extends java.lang.Object {
 	 * @return true if the castling is possible given the king new coordinates
 	 * 
 	 * TODO: the king and the switching Rock should not have moved the entire game
-	 *       the steps between the King and the Rock should not be in check
+	 * 		 the steps between the King and the Rock should not be in check
 	 */
 	public boolean isCastlingPossible(int xInit, int yInit, int xFinal, int yFinal) {
 		boolean ret = false;
@@ -241,10 +240,51 @@ public class Game extends java.lang.Object {
 	}
 
 	/**
-	 * Not sure yet...
+	 * 7 Do the castle move, meaning move the king and the Rock accordingly
+	 * 
+	 * @param xInit  of the king
+	 * @param yInit  of the king
+	 * @param xFinal of the king
+	 * @param yFinal of the king
+	 * @return true once the castling move is done
+	 * 
 	 */
-	public void setCastling() {
+	public boolean castle(int xInit, int yInit, int xFinal, int yFinal) {
+		boolean ret = false;
+		if (this.isCastlingPossible(xInit, yInit, xFinal, yFinal)) {
+			// move the king
+			move(xInit, yInit, xFinal, yFinal);
 
+			// move the rock
+			// white
+			if (yInit == 7) {
+				// right
+				if (xFinal == 6) {
+					move(7, 7, 5, 7);
+					ret = true;
+				}
+				// left
+				else {
+					move(0, 7, 3, 7);
+					ret = true;
+				}
+			}
+			// black
+			else {
+				// right
+				if (xFinal == 6) {
+					move(7, 0, 5, 0);
+					ret = true;
+				}
+				// left
+				else {
+					move(0, 0, 3, 0);
+					ret = true;
+				}
+			}
+		}
+		System.out.println("CASTLING");
+		return ret;
 	}
 
 	/**
@@ -361,43 +401,25 @@ public class Game extends java.lang.Object {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Unit test for Castling check - all prints should return true");
+		System.out.println("Unit test for Castling check and move - all prints should return true");
+
 		Game whiteGame = new Game(Color.WHITE);
 		System.out.println(whiteGame.isCastlingPossible(4, 7, 6, 7) == false);
 
 		whiteGame.move(4, 6, 4, 5); // move pawn up
 		whiteGame.move(5, 7, 2, 4); // move out the right bishop
 		whiteGame.move(6, 7, 7, 5); // move out right knight
-
 		System.out.println(whiteGame.isCastlingPossible(4, 7, 6, 7));
-
-		Game whiteGame2 = new Game(Color.WHITE);
-		System.out.println(whiteGame2.isCastlingPossible(4, 7, 2, 7) == false);
-
-		whiteGame2.move(3, 6, 3, 5); // move pawn up
-		whiteGame2.move(2, 7, 5, 4); // move out the left bishop
-		whiteGame2.move(3, 7, 3, 6); // move out the queen
-		whiteGame2.move(1, 7, 0, 5); // move out left knight
-
-		System.out.println(whiteGame2.isCastlingPossible(4, 7, 2, 7));
+		System.out.println(whiteGame.castle(4, 7, 6, 7));
+		System.out.println(whiteGame.findPiece(6, 7).getName().equals("King"));
 
 		Game blackGame = new Game(Color.BLACK);
 		System.out.println(blackGame.isCastlingPossible(4, 0, 6, 0) == false);
-
 		blackGame.move(4, 1, 4, 2); // move pawn up
 		blackGame.move(5, 0, 2, 3); // move out the right bishop
 		blackGame.move(6, 0, 7, 2); // move out right knight
-
 		System.out.println(blackGame.isCastlingPossible(4, 0, 6, 0));
-
-		Game blackGame2 = new Game(Color.BLACK);
-		System.out.println(blackGame2.isCastlingPossible(4, 0, 2, 0) == false);
-
-		blackGame2.move(3, 1, 3, 2); // move pawn up
-		blackGame2.move(2, 0, 5, 3); // move out the left bishop
-		blackGame2.move(3, 0, 3, 1); // move out the queen
-		blackGame2.move(1, 0, 0, 2); // move out left knight
-
-		System.out.println(blackGame2.isCastlingPossible(4, 0, 2, 0));
+		System.out.println(blackGame.castle(4, 0, 6, 0));
+		System.out.println(blackGame.findPiece(6, 0).getName().equals("King"));
 	}
 }
