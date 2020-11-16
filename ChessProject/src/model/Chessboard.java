@@ -197,8 +197,9 @@ public class Chessboard extends java.lang.Object implements BoardGames {
 						ret = false;
 					
 					}
-					// Castling case
-					else if (this.game_current.isCastlingPossible(xInit, yInit, xFinal, yFinal)) {
+					// Castling or en passant cases
+					else if (this.game_current.isCastlingPossible(xInit, yInit, xFinal, yFinal)
+							|| this.isEnPassantPossible(xInit, yInit, xFinal, yFinal)) {
 						ret = true;
 					}
 					// classic move
@@ -231,6 +232,10 @@ public class Chessboard extends java.lang.Object implements BoardGames {
 			// castling move
 			if (this.game_current.isCastlingPossible(xInit, yInit, xFinal, yFinal)) {
 				ret = this.game_current.castle(xInit, yInit, xFinal, yFinal);
+			}
+			// en passant (move + capture)
+			else if (this.isEnPassantPossible(xInit, yInit, xFinal, yFinal)) {
+				ret = this.enPassant(xInit, yInit, xFinal, yFinal);
 			}
 			// classic move
 			else {
@@ -281,6 +286,27 @@ public class Chessboard extends java.lang.Object implements BoardGames {
 		}
 		return ret;
 	}
+	
+	/**
+	 * Do the en passant move (involving capture)
+	 * <p>
+	 * @param xInit of the current pawn
+	 * @param yInit of the current pawn
+	 * @param xFinal of the current pawn
+	 * @param yFinal of the current pawn
+	 * @return true once the en passant move and capture are done
+	 */
+	public boolean enPassant(int xInit, int yInit, int xFinal, int yFinal) {
+		boolean ret =false;
+		if (this.isEnPassantPossible(xInit, yInit, xFinal, yFinal)) {
+			// capture
+			this.game_non_current.capture(xFinal, yInit);
+			// move
+			this.game_current.move(xInit, yInit, xFinal, yFinal);
+			ret = true;
+		}
+		return ret;
+	}
 
 	public String toString() {
 		return "Game White: \r" + this.game_WHITE.toString() + " \r Game Black: \r" + this.game_BLACK.toString() + "\r";
@@ -316,7 +342,7 @@ public class Chessboard extends java.lang.Object implements BoardGames {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		System.out.println("Unit test for en passant check - all prints should return true");
+		System.out.println("Unit test for en passant check and move - all prints should return true");
 
 		Chessboard chess = new Chessboard();
 		System.out.println(chess.isEnPassantPossible(0, 3, 1, 2) == false);
@@ -324,6 +350,9 @@ public class Chessboard extends java.lang.Object implements BoardGames {
 		chess.game_current.move(0, 4, 0, 3); // move white pawn 1 step up
 		chess.game_non_current.move(1, 1, 1, 3); // move black pawn 2 steps up
 		System.out.println(chess.isEnPassantPossible(0, 3, 1, 2));
+		System.out.println(chess.enPassant(0, 3, 1, 2));
+		System.out.println(chess.game_current.isPieceHere(1, 3) == false); // the black pawn was captured
+		System.out.println(chess.game_current.findPiece(1, 2).getName().equals("Pawn")); // the white pawn moved en passant
 		
 		chess.switchJoueur();
 		System.out.println(chess.isEnPassantPossible(7, 4, 6, 5) == false);
@@ -331,5 +360,8 @@ public class Chessboard extends java.lang.Object implements BoardGames {
 		chess.game_current.move(7, 3, 7, 4); // move black pawn 1 step up
 		chess.game_non_current.move(6, 6, 6, 4); // move white pawn 2 steps up
 		System.out.println(chess.isEnPassantPossible(7, 4, 6, 5));
+		System.out.println(chess.enPassant(7, 4, 6, 5));
+		System.out.println(chess.game_current.isPieceHere(6, 4) == false); // the white pawn was captured
+		System.out.println(chess.game_current.findPiece(6, 5).getName().equals("Pawn")); // the black pawn moved en passant
 	}
 }
