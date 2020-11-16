@@ -241,6 +241,46 @@ public class Chessboard extends java.lang.Object implements BoardGames {
 		}
 		return ret;
 	}
+	
+	/**
+	 * Check if the en passant move is possible
+	 * 
+	 * @see <a href="https://www.youtube.com/watch?v=1q7lZilVy04&ab_channel=Chess.com">En Passant</a>
+	 * @param xInit
+	 * @param yInit
+	 * @param xFinal
+	 * @param yFinal
+	 * @return true if the en passant move is possible
+	 * 
+	 * TODO: the en passant move must be done right after the opponent pawn did a 2 step forward move
+	 */
+	public boolean isEnPassantPossible(int xInit, int yInit, int xFinal, int yFinal) {
+		boolean ret = false;
+		Color pawnColor = game_current.getColor();
+		// white pawn
+		if (pawnColor == Color.WHITE) {
+			// at good y position
+			if (yInit == 3 && yFinal == 2
+					&& Math.abs(xFinal - xInit) == 1
+					&& game_non_current.isPieceHere(xFinal, yInit)
+					&& game_non_current.findPiece(xFinal, yInit).getColor() == Color.BLACK
+					&& game_non_current.findPiece(xFinal, yInit).getName().equals("Pawn")) {
+				ret = true;	
+			}
+		}
+		// black pawn
+		if (pawnColor == Color.BLACK) {
+			// at good y position
+			if (yInit == 4 && yFinal == 5
+					&& Math.abs(xFinal - xInit) == 1
+					&& game_non_current.isPieceHere(xFinal, yInit)
+					&& game_non_current.findPiece(xFinal, yInit).getColor() == Color.WHITE
+					&& game_non_current.findPiece(xFinal, yInit).getName().equals("Pawn")) {
+				ret = true;	
+			}
+		}
+		return ret;
+	}
 
 	public String toString() {
 		return "Game White: \r" + this.game_WHITE.toString() + " \r Game Black: \r" + this.game_BLACK.toString() + "\r";
@@ -269,5 +309,27 @@ public class Chessboard extends java.lang.Object implements BoardGames {
 		 * TODO
 		 */
 	}
+	
+	/**
+	 * Unit tests
+	 * 
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		System.out.println("Unit test for en passant check - all prints should return true");
 
+		Chessboard chess = new Chessboard();
+		System.out.println(chess.isEnPassantPossible(0, 3, 1, 2) == false);
+		chess.game_current.move(0, 6, 0, 4); // move white pawn 2 steps up
+		chess.game_current.move(0, 4, 0, 3); // move white pawn 1 step up
+		chess.game_non_current.move(1, 1, 1, 3); // move black pawn 2 steps up
+		System.out.println(chess.isEnPassantPossible(0, 3, 1, 2));
+		
+		chess.switchJoueur();
+		System.out.println(chess.isEnPassantPossible(7, 4, 6, 5) == false);
+		chess.game_current.move(7, 1, 7, 3); // move black pawn 2 steps up
+		chess.game_current.move(7, 3, 7, 4); // move black pawn 1 step up
+		chess.game_non_current.move(6, 6, 6, 4); // move white pawn 2 steps up
+		System.out.println(chess.isEnPassantPossible(7, 4, 6, 5));
+	}
 }
