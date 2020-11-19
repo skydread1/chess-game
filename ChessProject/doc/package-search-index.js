@@ -1,1 +1,0 @@
-packageSearchIndex = [{"l":"All Packages","url":"allpackages-index.html"},{"l":"controler"},{"l":"controler.controlerLocal"},{"l":"launcher.localLauncher"},{"l":"model"},{"l":"model.observable"},{"l":"tools"},{"l":"view"}]
