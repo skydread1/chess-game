@@ -1,5 +1,6 @@
 package launcher.localLauncher;
 
+import java.beans.PropertyChangeListener;
 import java.util.Observer;
 
 import model.observable.ChessGameObs;
@@ -31,7 +32,7 @@ public class LauncherCmdLine {
 		new ChessGameCmdLine(controler);
 
 		vue = new ChessGameCmdLine(controler);
-		model.addObserver((Observer) vue);
+		model.addPropertyChangeListener((PropertyChangeListener) vue);
 		vue.go();
 	}
 

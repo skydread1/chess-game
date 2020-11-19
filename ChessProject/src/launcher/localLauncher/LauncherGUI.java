@@ -1,13 +1,15 @@
 package launcher.localLauncher;
 
 import java.awt.Dimension;
-import java.util.Observer;
+import java.beans.PropertyChangeListener;
 
 import javax.swing.JFrame;
 
 import controler.ChessGameControlers;
 import controler.controlerLocal.ChessGameControler;
+
 import model.observable.ChessGameObs;
+
 import view.ChessGameGUI;
 
 /**
@@ -33,11 +35,12 @@ public class LauncherGUI {
 
 		dim = new Dimension(800, 800);
 
-		chessGame = new ChessGameObs();
+		chessGame = new ChessGameObs(); //observable
 		chessGameControler = new ChessGameControler(chessGame);
 
-		frame = new ChessGameGUI("Game d'echec", chessGameControler, dim);
-		chessGame.addObserver((Observer) frame);
+		frame = new ChessGameGUI("Chess Game", chessGameControler, dim); //observer
+		chessGame.addPropertyChangeListener((PropertyChangeListener) frame); //observer observes the observable
+		chessGame.notifyPiecesHMI(chessGame.getChessboard()); // Notify the view about the initial pieces HMI
 
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setLocation(600, 10);

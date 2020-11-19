@@ -1,10 +1,12 @@
 package model.observable;
 
-import java.util.Observable;
-import java.util.Observer;
+import java.beans.PropertyChangeListener;
+import java.beans.PropertyChangeSupport;
+import java.util.List;
 
 import model.BoardGames;
 import model.Color;
+
 import model.Chessboard;
 
 /**
@@ -14,9 +16,11 @@ import model.Chessboard;
  * and simplify the interface (DP Proxy, Facade, Observer)
  *
  */
-public class ChessGameObs extends Observable implements BoardGames {
+public class ChessGameObs implements BoardGames {
 
 	private Chessboard chessboard;
+	// the support allows us to add, remove and notify observers
+	private PropertyChangeSupport support;
 
 	/**
 	 * Instantiate a chess board and notify the observers
@@ -24,13 +28,13 @@ public class ChessGameObs extends Observable implements BoardGames {
 	public ChessGameObs() {
 		super();
 		this.chessboard = new Chessboard();
-		this.notifyObservers(chessboard.getPiecesHMI());
+		support = new PropertyChangeSupport(this);
 	}
 
 	/**
 	 * @return the chessboard
 	 */
-	public Chessboard getEchiquier() {
+	public Chessboard getChessboard() {
 		return this.chessboard;
 	}
 
@@ -63,7 +67,7 @@ public class ChessGameObs extends Observable implements BoardGames {
 			chessboard.switchJoueur();
 		}
 
-		this.notifyObservers(this.chessboard.getPiecesHMI());
+		this.notifyPiecesHMI(this.chessboard);
 		return ret;
 	}
 
@@ -83,15 +87,25 @@ public class ChessGameObs extends Observable implements BoardGames {
 		return chessboard.getPieceColor(x, y);
 	}
 
-	@Override
-	public void notifyObservers(Object arg) {
-		super.setChanged();
-		super.notifyObservers(arg);
-	}
-
-	@Override
-	public void addObserver(Observer o) {
-		super.addObserver(o);
-		this.notifyObservers(chessboard.getPiecesHMI());
-	}
+	/**
+	 * @param pcl
+	 */
+	public void addPropertyChangeListener(PropertyChangeListener pcl) {
+        support.addPropertyChangeListener(pcl);
+    }
+ 
+    /**
+     * @param pcl
+     */
+    public void removePropertyChangeListener(PropertyChangeListener pcl) {
+        support.removePropertyChangeListener(pcl);
+    }
+ 
+    /**
+     * notify the view about the new pieces HMI.
+     * @param chessboard
+     */
+    public void notifyPiecesHMI(Chessboard chessboard) {
+        support.firePropertyChange("piecesHMI", this.chessboard.getPiecesHMI(), chessboard.getPiecesHMI());
+    }
 }

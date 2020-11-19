@@ -155,7 +155,7 @@ public abstract class AbstractChessGameControler implements ChessGameControlers 
 		List<Coord> tabCoord = new ArrayList<Coord>();
 		for (int i = 0; i < 8; i++) {
 			for (int j = 0; j < 8; j++) {
-				if (this.chessGame.getEchiquier().isMoveOk(initCoord.x, initCoord.y, i, j)) {
+				if (this.chessGame.getChessboard().isMoveOk(initCoord.x, initCoord.y, i, j)) {
 					tabCoord.add(new Coord(i, j));
 				}
 			}

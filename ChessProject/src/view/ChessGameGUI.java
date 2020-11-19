@@ -8,19 +8,21 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Observable;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 import javax.swing.JPanel;
 import tools.ChessImageProvider;
+
 import model.Coord;
 import model.PieceHMI;
-//import model.observable.ChessGame;
+
 import controler.ChessGameControlers;
-//import controler.controlerLocal.ChessGameControler;
+
 
 /**
  * @author Loic and Lucas
@@ -30,7 +32,7 @@ import controler.ChessGameControlers;
  */
 @SuppressWarnings("serial")
 public class ChessGameGUI extends javax.swing.JFrame
-		implements java.awt.event.MouseListener, java.awt.event.MouseMotionListener, java.util.Observer {
+		implements java.awt.event.MouseListener, java.awt.event.MouseMotionListener, PropertyChangeListener {
 
 	JLayeredPane layeredPane;
 	JPanel chessBoard;
@@ -59,12 +61,11 @@ public class ChessGameGUI extends javax.swing.JFrame
 	public static Dimension getDim() {
 		return size;
 	}
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
-		List<PieceHMI> Liste_PiecesIHM = (List<PieceHMI>) arg1;
+	
+	public void propertyChange(PropertyChangeEvent evt) {
+        
+        @SuppressWarnings("unchecked")
+		List<PieceHMI> Liste_PiecesIHM =  (List<PieceHMI>) evt.getNewValue();
 		// Add a chess board to the Layered Pane
 
 		init();
@@ -77,8 +78,7 @@ public class ChessGameGUI extends javax.swing.JFrame
 				panel.add(piece);
 			}
 		}
-
-	}
+    }
 
 	private void init() {
 		Dimension boardSize = new Dimension(800, 800);
